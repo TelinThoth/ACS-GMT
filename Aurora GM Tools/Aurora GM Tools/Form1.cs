@@ -15,6 +15,8 @@ namespace Aurora_GM_Tools
     {
         private Scribe librarian;
         private string gameLocation;
+        private string[] gamesList;
+        private string[] factionsList;
 
         public Form1()
         {
@@ -30,13 +32,99 @@ namespace Aurora_GM_Tools
             {
                 gameLocation = openFolder.SelectedPath.ToString();
                 librarian.ChangeGames(gameLocation);
-                string tmp = librarian.GetGamesList();
+
+                PopulateGamesDropdown();
             }
+            GameControlsPanel.Visible = true;
+            GameControlsPanel.Enabled = true;
+            return;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+            return;
+        }
+
+        private void closeGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            librarian.CloseGame();
+            DisableDisplay();
+            return;
+        }
+
+        private void DisableDisplay()
+        {
+            //Main Game Load
+            GameControlsPanel.Visible = false;
+            GameControlsPanel.Enabled = false;
+
+            return;
+        }
+
+        private void PopulateGamesDropdown()
+        {
+            cbx_gamesList.Items.Clear();
+
+            cbx_gamesList.Items.AddRange(librarian.GetGamesList());
+
+            cbx_gamesList.Enabled = true;
+            cbx_gamesList.Visible = true;
+
+            cbx_gamesList.SelectedIndex = 0;
+            
+            lbl_gameList.Visible = true;
+
+            PopulateFactionDropdown();
+            return;
+        }
+
+        private void PopulateFactionDropdown()
+        {
+            cbx_faction.Items.Clear();
+
+            cbx_faction.Items.AddRange(librarian.GetFactionList(cbx_gamesList.SelectedIndex));
+
+            cbx_faction.Enabled = true;
+            cbx_faction.Visible = true;
+
+            cbx_faction.SelectedIndex = 0;
+
+            lbl_Faction.Visible = true;
+
+            PopulateFleetDropdown();
+            return;
+        }
+
+        private void PopulateFleetDropdown()
+        {
+            cbx_fleet.Items.Clear();
+
+            cbx_fleet.Items.AddRange(librarian.GetFleetList(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex));
+
+            cbx_fleet.Enabled = true;
+            cbx_fleet.Visible = true;
+
+            cbx_fleet.SelectedIndex = 0;
+
+            lbl_fleet.Visible = true;
+
+            tbctl_SelectionOptions.Visible = true;
+            tbctl_SelectionOptions.Enabled = true;
+
+            return;
+        }
+
+        private void cbx_gamesList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PopulateFactionDropdown();
+            return;
+        }
+
+        private void cbx_faction_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PopulateFleetDropdown();
+            return;
         }
     }
 }

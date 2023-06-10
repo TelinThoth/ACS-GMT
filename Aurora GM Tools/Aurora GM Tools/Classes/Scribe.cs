@@ -13,16 +13,18 @@ namespace Aurora_GM_Tools.Classes
         private string fileLoc = "";
         private string fileName = "AuroraDB.db";
 
+        private List<Game> gamesList;
+
         private SQLiteConnection uplink = new SQLiteConnection();
         private SQLiteConnectionStringBuilder dialup = new SQLiteConnectionStringBuilder();
         public Scribe()
-        {}
+        {
+            gamesList = new List<Game>();
+        }
 
         ~Scribe()
         {
-            //Ensure the DB Connection is closed when we deconstruct.
-            if(uplink.State != ConnectionState.Closed)
-                uplink.Close();
+            
         }
         public void ChangeGames(string i_location)
         {
@@ -43,45 +45,103 @@ namespace Aurora_GM_Tools.Classes
 
             //Set the New connection.
             uplink.ConnectionString = dialup.ConnectionString;
+            
+            PopulateInternalGames();
+            PopulateInternalFactions();
+            PopulateInternalFleets();
+            
             return;
         }
 
-        public string GetGamesList()
+        private void PopulateInternalGames()
         {
-            string rv_lists = "";
-            string[] rv_games = new string[1];
-            int[] rv_gameIDs = new int[1];
-
             uplink.Open();
             using (SQLiteCommand getGames = new SQLiteCommand(uplink))
             {
                 getGames.CommandText = "SELECT GameName, GameID FROM FCT_Game";
                 using (SQLiteDataReader results = getGames.ExecuteReader())
                 {
-                    int i = 0;
                     while (results.Read())
                     {
-                        if (i > 0)
-                        {
-                            Array.Resize(ref rv_games, i + 1);
-                            Array.Resize(ref rv_gameIDs, i + 1);
-                        }
-                        rv_games[i] = results.GetString(0);
-                        rv_gameIDs[i] = results.GetInt32(1);
-                        i++;
+                        gamesList.Add(new Game(results.GetString(0), results.GetInt32(1)));
                     }
                 }
             }
             uplink.Close();
+            return;
+        }
 
-            for (int i = 0; i < rv_games.Length; i++)
+        private void PopulateInternalFactions()
+        {
+            uplink.Open();
+
+            using (SQLiteCommand getFacts = new SQLiteCommand(uplink))
             {
-                if (rv_lists.Length != 0)
-                    rv_lists += "|";
-                rv_lists += rv_games[i] + ' ' + rv_gameIDs[i].ToString();
+                foreach (Game entry in gamesList)
+                {
+                    getFacts.CommandText = "SELECT RaceTitle, RaceID, WealthPoints, NPR FROM FCT_Race WHERE GameID = " + entry.Game_ID.ToString();
+                    using (SQLiteDataReader results = getFacts.ExecuteReader())
+                    {
+                        while (results.Read())
+                        {
+                            entry.Populate(new Faction(results.GetString(0), results.GetInt32(1), results.GetDouble(2), !results.GetBoolean(3)));
+                        }
+                    }
+                }
             }
+            uplink.Close();
+            return;
+        }
 
-            return rv_lists;
+        private void PopulateInternalFleets()
+        {
+            uplink.Open();
+
+            using (SQLiteCommand getFleets = new SQLiteCommand(uplink))
+            {
+                foreach (Game entry in gamesList)
+                {
+                    foreach (Faction group in entry.factionsList)
+                    {
+                        getFleets.CommandText = "SELECT FleetName, FleetID FROM FCT_Fleet WHERE GameID = " + entry.Game_ID.ToString() + " AND RaceID = " + group.Faction_ID.ToString() + " AND CivilianFunction = 0;";
+                        using (SQLiteDataReader results = getFleets.ExecuteReader())
+                        {
+                            while (results.Read())
+                            {
+                                group.Populate(new Fleet(results.GetString(0), results.GetInt32(1)));
+                            }
+                        }
+
+                        getFleets.CommandText = "SELECT FleetName, FleetID FROM FCT_Fleet WHERE GameID = " + entry.Game_ID.ToString() + " AND RaceID = " + group.Faction_ID.ToString() + " AND CivilianFunction != 0;";
+                    }
+                }
+            }
+            uplink.Close();
+            return;
+        }
+
+        public string[] GetGamesList()
+        {
+            return gamesList.Select(item => item.Game_Name).ToArray();
+        }
+
+        public string[] GetFactionList(int selection)
+        {
+            return gamesList[selection].Factions_List;
+        }
+
+        public string[] GetFleetList(int gameSel, int factSel)
+        {
+            return gamesList[gameSel].factionsList[factSel].Fleets;
+        }
+
+        public void CloseGame()
+        {
+            if(uplink.State != ConnectionState.Closed)
+                uplink.Close();
+            fileLoc = "";
+
+            return;
         }
     }
 }

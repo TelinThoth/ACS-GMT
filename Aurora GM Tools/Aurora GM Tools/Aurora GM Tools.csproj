@@ -85,7 +85,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Colony.cs" />
+    <Compile Include="Classes\Faction.cs" />
+    <Compile Include="Classes\Fleet.cs" />
+    <Compile Include="Classes\Game.cs" />
     <Compile Include="Classes\Scribe.cs" />
+    <Compile Include="Classes\Ship.cs" />
+    <Compile Include="Classes\ShipClass.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
