@@ -44,6 +44,8 @@ namespace Aurora_GM_Tools
             this.tbctl_SelectionOptions = new System.Windows.Forms.TabControl();
             this.tab_fleets = new System.Windows.Forms.TabPage();
             this.tab_Colonies = new System.Windows.Forms.TabPage();
+            this.cbx_shippingLines = new System.Windows.Forms.ComboBox();
+            this.lbl_shippingLines = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.GameControlsPanel.SuspendLayout();
             this.tbctl_SelectionOptions.SuspendLayout();
@@ -52,7 +54,6 @@ namespace Aurora_GM_Tools
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
@@ -96,14 +97,12 @@ namespace Aurora_GM_Tools
             // cbx_gamesList
             // 
             this.cbx_gamesList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_gamesList.Enabled = false;
             this.cbx_gamesList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_gamesList.FormattingEnabled = true;
             this.cbx_gamesList.Location = new System.Drawing.Point(106, 13);
             this.cbx_gamesList.Name = "cbx_gamesList";
             this.cbx_gamesList.Size = new System.Drawing.Size(295, 37);
             this.cbx_gamesList.TabIndex = 1;
-            this.cbx_gamesList.Visible = false;
             this.cbx_gamesList.SelectedIndexChanged += new System.EventHandler(this.cbx_gamesList_SelectedIndexChanged);
             // 
             // lbl_gameList
@@ -116,7 +115,6 @@ namespace Aurora_GM_Tools
             this.lbl_gameList.Size = new System.Drawing.Size(84, 29);
             this.lbl_gameList.TabIndex = 2;
             this.lbl_gameList.Text = "Game:";
-            this.lbl_gameList.Visible = false;
             // 
             // GameControlsPanel
             // 
@@ -133,14 +131,12 @@ namespace Aurora_GM_Tools
             // cbx_faction
             // 
             this.cbx_faction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_faction.Enabled = false;
             this.cbx_faction.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_faction.FormattingEnabled = true;
             this.cbx_faction.Location = new System.Drawing.Point(106, 56);
             this.cbx_faction.Name = "cbx_faction";
             this.cbx_faction.Size = new System.Drawing.Size(295, 37);
             this.cbx_faction.TabIndex = 3;
-            this.cbx_faction.Visible = false;
             this.cbx_faction.SelectedIndexChanged += new System.EventHandler(this.cbx_faction_SelectedIndexChanged);
             // 
             // lbl_Faction
@@ -153,19 +149,16 @@ namespace Aurora_GM_Tools
             this.lbl_Faction.Size = new System.Drawing.Size(98, 29);
             this.lbl_Faction.TabIndex = 4;
             this.lbl_Faction.Text = "Faction:";
-            this.lbl_Faction.Visible = false;
             // 
             // cbx_fleet
             // 
             this.cbx_fleet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_fleet.Enabled = false;
             this.cbx_fleet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_fleet.FormattingEnabled = true;
-            this.cbx_fleet.Location = new System.Drawing.Point(111, 6);
+            this.cbx_fleet.Location = new System.Drawing.Point(13, 41);
             this.cbx_fleet.Name = "cbx_fleet";
-            this.cbx_fleet.Size = new System.Drawing.Size(258, 37);
+            this.cbx_fleet.Size = new System.Drawing.Size(356, 37);
             this.cbx_fleet.TabIndex = 5;
-            this.cbx_fleet.Visible = false;
             // 
             // lbl_fleet
             // 
@@ -177,7 +170,6 @@ namespace Aurora_GM_Tools
             this.lbl_fleet.Size = new System.Drawing.Size(68, 29);
             this.lbl_fleet.TabIndex = 6;
             this.lbl_fleet.Text = "Fleet";
-            this.lbl_fleet.Visible = false;
             // 
             // tbctl_SelectionOptions
             // 
@@ -195,6 +187,8 @@ namespace Aurora_GM_Tools
             // tab_fleets
             // 
             this.tab_fleets.BackColor = System.Drawing.Color.MediumBlue;
+            this.tab_fleets.Controls.Add(this.cbx_shippingLines);
+            this.tab_fleets.Controls.Add(this.lbl_shippingLines);
             this.tab_fleets.Controls.Add(this.cbx_fleet);
             this.tab_fleets.Controls.Add(this.lbl_fleet);
             this.tab_fleets.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -216,6 +210,27 @@ namespace Aurora_GM_Tools
             this.tab_Colonies.Size = new System.Drawing.Size(388, 492);
             this.tab_Colonies.TabIndex = 1;
             this.tab_Colonies.Text = "Colonies";
+            // 
+            // cbx_shippingLines
+            // 
+            this.cbx_shippingLines.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_shippingLines.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbx_shippingLines.FormattingEnabled = true;
+            this.cbx_shippingLines.Location = new System.Drawing.Point(13, 270);
+            this.cbx_shippingLines.Name = "cbx_shippingLines";
+            this.cbx_shippingLines.Size = new System.Drawing.Size(356, 37);
+            this.cbx_shippingLines.TabIndex = 7;
+            // 
+            // lbl_shippingLines
+            // 
+            this.lbl_shippingLines.AutoSize = true;
+            this.lbl_shippingLines.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_shippingLines.ForeColor = System.Drawing.Color.Lime;
+            this.lbl_shippingLines.Location = new System.Drawing.Point(8, 227);
+            this.lbl_shippingLines.Name = "lbl_shippingLines";
+            this.lbl_shippingLines.Size = new System.Drawing.Size(155, 29);
+            this.lbl_shippingLines.TabIndex = 8;
+            this.lbl_shippingLines.Text = "Civ. Shipping";
             // 
             // Form1
             // 
@@ -257,6 +272,8 @@ namespace Aurora_GM_Tools
         private System.Windows.Forms.ComboBox cbx_fleet;
         private System.Windows.Forms.Label lbl_fleet;
         private System.Windows.Forms.TabPage tab_Colonies;
+        private System.Windows.Forms.ComboBox cbx_shippingLines;
+        private System.Windows.Forms.Label lbl_shippingLines;
     }
 }
 

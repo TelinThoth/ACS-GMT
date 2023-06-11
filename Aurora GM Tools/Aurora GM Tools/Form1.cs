@@ -22,6 +22,7 @@ namespace Aurora_GM_Tools
         {
             InitializeComponent();
             librarian = new Scribe();
+            DisableDisplay();
         }
 
         private void openGameFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -35,8 +36,7 @@ namespace Aurora_GM_Tools
 
                 PopulateGamesDropdown();
             }
-            GameControlsPanel.Visible = true;
-            GameControlsPanel.Enabled = true;
+            
             return;
         }
 
@@ -68,14 +68,13 @@ namespace Aurora_GM_Tools
 
             cbx_gamesList.Items.AddRange(librarian.GetGamesList());
 
-            cbx_gamesList.Enabled = true;
-            cbx_gamesList.Visible = true;
-
             cbx_gamesList.SelectedIndex = 0;
-            
-            lbl_gameList.Visible = true;
 
             PopulateFactionDropdown();
+
+            GameControlsPanel.Visible = true;
+            GameControlsPanel.Enabled = true;
+
             return;
         }
 
@@ -85,14 +84,13 @@ namespace Aurora_GM_Tools
 
             cbx_faction.Items.AddRange(librarian.GetFactionList(cbx_gamesList.SelectedIndex));
 
-            cbx_faction.Enabled = true;
-            cbx_faction.Visible = true;
-
             cbx_faction.SelectedIndex = 0;
 
-            lbl_Faction.Visible = true;
+            tbctl_SelectionOptions.Visible = true;
+            tbctl_SelectionOptions.Enabled = true;
 
             PopulateFleetDropdown();
+            PopulateShippingDropdown();
             return;
         }
 
@@ -102,15 +100,18 @@ namespace Aurora_GM_Tools
 
             cbx_fleet.Items.AddRange(librarian.GetFleetList(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex));
 
-            cbx_fleet.Enabled = true;
-            cbx_fleet.Visible = true;
-
             cbx_fleet.SelectedIndex = 0;
 
-            lbl_fleet.Visible = true;
+            return;
+        }
 
-            tbctl_SelectionOptions.Visible = true;
-            tbctl_SelectionOptions.Enabled = true;
+        private void PopulateShippingDropdown()
+        {
+            cbx_shippingLines.Items.Clear();
+
+            cbx_shippingLines.Items.AddRange(librarian.GetShippingList(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex));
+
+            cbx_shippingLines.SelectedIndex = 0;
 
             return;
         }

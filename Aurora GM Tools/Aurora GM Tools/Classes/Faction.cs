@@ -12,19 +12,22 @@ namespace Aurora_GM_Tools.Classes
         private int factionID;
         private double wealth;
         private bool playerRace;
-        private List<Fleet> fleetList;
-        private List<Fleet> civFleetList;
-        private List<Colony> coloniesList;
+
+        public List<Fleet> fleetList;
+        public List<Shipping> shippingLines;
+        public List<Colony> coloniesList;
 
         public string Faction_Name { get { return factionName; } }
         public int Faction_ID { get { return factionID; } }
         public double Faction_Wealth { get { return wealth; } }
         public bool Faction_IsHuman { get { return playerRace; } }
 
-        public string[] Fleets { get { return fleetList.Select(item => item.Fleet_Name).ToArray(); } }
-
         public Faction()
-        { }
+        {
+            fleetList = new List<Fleet>();
+            shippingLines = new List<Shipping>();
+            coloniesList = new List<Colony>();
+        }
 
         public Faction(string i_factionName, int i_factionID, double i_wealth, bool i_playerRace)
         {
@@ -34,18 +37,8 @@ namespace Aurora_GM_Tools.Classes
             playerRace = i_playerRace;
 
             fleetList = new List<Fleet>();
-        }
-
-        public void Populate(Fleet i_fleet)
-        {
-            fleetList.Add(i_fleet);
-            return;
-        }
-
-        public void PopulateCivFleets(Fleet i_fleet)
-        {
-
-            return;
+            shippingLines = new List<Shipping>();
+            coloniesList = new List<Colony>();
         }
     }
 }

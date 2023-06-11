@@ -92,6 +92,7 @@
     <Compile Include="Classes\Scribe.cs" />
     <Compile Include="Classes\Ship.cs" />
     <Compile Include="Classes\ShipClass.cs" />
+    <Compile Include="Classes\Shipping.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

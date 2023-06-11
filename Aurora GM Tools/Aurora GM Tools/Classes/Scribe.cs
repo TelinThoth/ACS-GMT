@@ -84,7 +84,7 @@ namespace Aurora_GM_Tools.Classes
                     {
                         while (results.Read())
                         {
-                            entry.Populate(new Faction(results.GetString(0), results.GetInt32(1), results.GetDouble(2), !results.GetBoolean(3)));
+                            entry.factionsList.Add(new Faction(results.GetString(0), results.GetInt32(1), results.GetDouble(2), !results.GetBoolean(3)));
                         }
                     }
                 }
@@ -103,16 +103,35 @@ namespace Aurora_GM_Tools.Classes
                 {
                     foreach (Faction group in entry.factionsList)
                     {
-                        getFleets.CommandText = "SELECT FleetName, FleetID FROM FCT_Fleet WHERE GameID = " + entry.Game_ID.ToString() + " AND RaceID = " + group.Faction_ID.ToString() + " AND CivilianFunction = 0;";
+                        getFleets.CommandText = "SELECT FleetName, FleetID FROM FCT_Fleet WHERE GameID = " + entry.Game_ID.ToString() + " AND RaceID = " + group.Faction_ID.ToString() + " AND ShippingLine = 0;";
                         using (SQLiteDataReader results = getFleets.ExecuteReader())
                         {
                             while (results.Read())
                             {
-                                group.Populate(new Fleet(results.GetString(0), results.GetInt32(1)));
+                                group.fleetList.Add(new Fleet(results.GetString(0), results.GetInt32(1)));
                             }
                         }
 
-                        getFleets.CommandText = "SELECT FleetName, FleetID FROM FCT_Fleet WHERE GameID = " + entry.Game_ID.ToString() + " AND RaceID = " + group.Faction_ID.ToString() + " AND CivilianFunction != 0;";
+                        getFleets.CommandText = "SELECT ShortName, ShippingLineID FROM FCT_ShippingLines WHERE GameID = " + entry.Game_ID.ToString() + " AND EmpireID = " + group.Faction_ID.ToString() + ";";
+                        using (SQLiteDataReader results = getFleets.ExecuteReader())
+                        {
+                            while (results.Read())
+                            {
+                                group.shippingLines.Add(new Shipping(results.GetString(0), results.GetInt32(1)));
+                            }
+                        }
+
+                        foreach (Shipping line in group.shippingLines)
+                        {
+                            getFleets.CommandText = "SELECT FleetName, FleetID FROM FCT_Fleet WHERE GameID = " + entry.Game_ID.ToString() + " AND RaceID = " + group.Faction_ID.ToString() + " AND ShippingLine = " + line.Line_ID.ToString() + ";";
+                            using (SQLiteDataReader results = getFleets.ExecuteReader())
+                            {
+                                while (results.Read())
+                                {
+                                    line.shippingFleet.Add(new Fleet(results.GetString(0), results.GetInt32(1)));
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -127,12 +146,22 @@ namespace Aurora_GM_Tools.Classes
 
         public string[] GetFactionList(int selection)
         {
-            return gamesList[selection].Factions_List;
+            return gamesList[selection].factionsList.Select(item => item.Faction_Name).ToArray();
         }
 
         public string[] GetFleetList(int gameSel, int factSel)
         {
-            return gamesList[gameSel].factionsList[factSel].Fleets;
+            return gamesList[gameSel].factionsList[factSel].fleetList.Select(item => item.Fleet_Name).ToArray();
+        }
+
+        public string[] GetShippingList(int gameSel, int factSel)
+        {
+            return gamesList[gameSel].factionsList[factSel].shippingLines.Select(item => item.Line_Name).ToArray();
+        }
+
+        public string[] GetShippingFleets(int gameSel, int factSel, int lineSel)
+        {
+            return gamesList[gameSel].factionsList[factSel].shippingLines[lineSel].shippingFleet.Select(item => item.Fleet_Name).ToArray();
         }
 
         public void CloseGame()
