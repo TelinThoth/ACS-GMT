@@ -13,6 +13,13 @@ namespace Aurora_GM_Tools.Classes
 
         public string ShipClass_Name { get { return shipClassName; } }
         public int ShipClass_ID { get { return shipClassID; } }
+
+        public ShipClass()
+        {
+            shipClassName = "Default";
+            shipClassID = -1;
+        }
+
         public ShipClass(string i_name, int i_id)
         {
             shipClassName = i_name;

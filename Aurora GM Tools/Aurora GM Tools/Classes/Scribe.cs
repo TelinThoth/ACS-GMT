@@ -224,13 +224,17 @@ namespace Aurora_GM_Tools.Classes
                             {
                                 while (results.Read())
                                 {
-                                    fact.coloniesList.Add(new Colony(results.GetString(0), results.GetInt32(1)));
+                                    col.componentStock.Add(new Component(results.GetString(0), results.GetInt32(1), results.GetInt32(2)));
                                 }
                             }
 
-                            getColony.CommandText = "SELECT FCT_ShipDesignComponents.Name, FCT_PopComponent.ComponentID, FCT_PopComponent.Amount FROM FCT_PopComponent JOIN FCT_ShipDesignComponents ON FCT_PopComponent.ComponentID = FCT_ShipDesignComponents.SDComponentID WHERE FCT_PopComponent.GameID = " + entry.Game_ID.ToString() + " AND FCT_PopComponent.PopulationID = " + col.Col_ID.ToString() + ";";
+                            getColony.CommandText = "SELECT FCT_Missiles.Name, FCT_PopulationWeapon.MissileID, FCT_PopulationWeapon.Amount FROM FCT_PopulationWeapon JOIN FCT_Missiles ON FCT_PopulationWeapon.MissileID = FCT_Missiles.MissileID WHERE FCT_PopulationWeapon.GameID = " + entry.Game_ID.ToString() + " AND FCT_PopulationWeapon.PopulationID = " + col.Col_ID.ToString() + ";";
+                            using (SQLiteDataReader results = getColony.ExecuteReader())
                             {
-
+                                while (results.Read())
+                                {
+                                    col.missileStock.Add(new Missile(results.GetString(0), results.GetInt32(1), results.GetDouble(2)));
+                                }
                             }
                         }
                     }
@@ -277,6 +281,33 @@ namespace Aurora_GM_Tools.Classes
             string[] rv_none = { "None" };
             if (gameSel > -1 && factSel > -1 && lineSel > -1)
                 return gamesList[gameSel].factionsList[factSel].shippingLines[lineSel].shippingFleet.Select(item => item.Fleet_Name).ToArray();
+            else
+                return rv_none;
+        }
+
+        public string[] GetColoniesList(int gameSel, int factSel)
+        {
+            string[] rv_none = { "None" };
+            if (gameSel > -1 && factSel > -1)
+                return gamesList[gameSel].factionsList[factSel].coloniesList.Select(item => item.Col_Name).ToArray();
+            else
+                return rv_none;
+        }
+
+        public string[] GetColonyComponents(int gameSel, int factSel, int colSel)
+        {
+            string[] rv_none = { "None" };
+            if (gameSel > -1 && factSel > -1 && colSel > -1)
+                return gamesList[gameSel].factionsList[factSel].coloniesList[colSel].componentStock.Select(item => item.Comp_Name).ToArray();
+            else
+                return rv_none;
+        }
+
+        public string[] GetColonyMissiles(int gameSel, int factSel, int colSel)
+        {
+            string[] rv_none = { "None" };
+            if (gameSel > -1 && factSel > -1 && colSel > -1)
+                return gamesList[gameSel].factionsList[factSel].coloniesList[colSel].missileStock.Select(item => item.misAmount.ToString()).ToArray();
             else
                 return rv_none;
         }

@@ -139,7 +139,7 @@ namespace Aurora_GM_Tools
         {
             cbx_colonies.Items.Clear();
 
-            //cbx_colonies.Items.AddRange(librarian.GetColoniesList(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex));
+            cbx_colonies.Items.AddRange(librarian.GetColoniesList(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex));
 
             if (cbx_colonies.Items.Count > 0)
                 cbx_colonies.SelectedIndex = 0;
@@ -163,6 +163,10 @@ namespace Aurora_GM_Tools
 
             cbx_shippingFleets.SelectedIndex = -1;
             cbx_shippingFleets.Items.Clear();
+
+            cbx_colonies.SelectedIndex = -1;
+            cbx_colonies.Items.Clear();
+
             return;
         }
 
@@ -177,6 +181,7 @@ namespace Aurora_GM_Tools
         {
             PopulateFleetDropdown();
             PopulateShippingDropdown();
+            PopulateColoniesDropdown();
             return;
         }
 

@@ -10,15 +10,14 @@ namespace Aurora_GM_Tools.Classes
     {
         private string compName;
         private int compID;
-        private int compCount;
+        public int compCount { get; set; }
 
         public string Comp_Name { get { return compName; } }
         public int Comp_ID { get { return compID; } }
-        public int Comp_Count { get { return compCount; } }
 
         public Component()
         {
-            compName = "None";
+            compName = "Default";
             compID = -1;
             compCount = 0;
         }

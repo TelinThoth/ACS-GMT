@@ -20,6 +20,15 @@ namespace Aurora_GM_Tools.Classes
         ~ Ship()
         { }
 
+        public Ship()
+        {
+            shipName = "Default";
+            shipID = -1;
+            gradePoints = -1;
+
+            shipClass = null;
+        }
+
         public Ship(string i_name, int i_id, double i_grade)
         {
             shipName = i_name;

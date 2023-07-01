@@ -10,7 +10,7 @@ namespace Aurora_GM_Tools.Classes
     {
         private string fleetName;
         private int fleetID;
-        private int training;
+        public int training { get; set; }
 
         public List<Ship> shipList;
 
