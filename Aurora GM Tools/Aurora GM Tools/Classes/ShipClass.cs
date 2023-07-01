@@ -10,5 +10,13 @@ namespace Aurora_GM_Tools.Classes
     {
         private string shipClassName;
         private int shipClassID;
+
+        public string ShipClass_Name { get { return shipClassName; } }
+        public int ShipClass_ID { get { return shipClassID; } }
+        public ShipClass(string i_name, int i_id)
+        {
+            shipClassName = i_name;
+            shipClassID = i_id;
+        }
     }
 }

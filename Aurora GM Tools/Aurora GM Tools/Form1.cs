@@ -27,6 +27,7 @@ namespace Aurora_GM_Tools
 
         private void openGameFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ResetDropdowns();
             FolderBrowserDialog openFolder = new FolderBrowserDialog();
             DialogResult result = openFolder.ShowDialog();
             if (result == DialogResult.OK)
@@ -48,6 +49,7 @@ namespace Aurora_GM_Tools
 
         private void closeGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ResetDropdowns();
             librarian.CloseGame();
             DisableDisplay();
             return;
@@ -68,7 +70,8 @@ namespace Aurora_GM_Tools
 
             cbx_gamesList.Items.AddRange(librarian.GetGamesList());
 
-            cbx_gamesList.SelectedIndex = 0;
+            if(cbx_gamesList.Items.Count > 0)
+                cbx_gamesList.SelectedIndex = 0;
 
             PopulateFactionDropdown();
 
@@ -84,13 +87,15 @@ namespace Aurora_GM_Tools
 
             cbx_faction.Items.AddRange(librarian.GetFactionList(cbx_gamesList.SelectedIndex));
 
-            cbx_faction.SelectedIndex = 0;
+            if (cbx_faction.Items.Count > 0)
+                cbx_faction.SelectedIndex = 0;
 
             tbctl_SelectionOptions.Visible = true;
             tbctl_SelectionOptions.Enabled = true;
 
             PopulateFleetDropdown();
             PopulateShippingDropdown();
+            PopulateColoniesDropdown();
             return;
         }
 
@@ -100,7 +105,8 @@ namespace Aurora_GM_Tools
 
             cbx_fleet.Items.AddRange(librarian.GetFleetList(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex));
 
-            cbx_fleet.SelectedIndex = 0;
+            if (cbx_fleet.Items.Count > 0)
+                cbx_fleet.SelectedIndex = 0;
 
             return;
         }
@@ -111,20 +117,72 @@ namespace Aurora_GM_Tools
 
             cbx_shippingLines.Items.AddRange(librarian.GetShippingList(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex));
 
-            cbx_shippingLines.SelectedIndex = 0;
+            if (cbx_shippingLines.Items.Count > 0)
+                cbx_shippingLines.SelectedIndex = 0;
 
+            PopulateShippingFleetsDropdown();
+
+            return;
+        }
+
+        private void PopulateShippingFleetsDropdown()
+        {
+            cbx_shippingFleets.Items.Clear();
+
+            cbx_shippingFleets.Items.AddRange(librarian.GetShippingFleets(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex, cbx_shippingLines.SelectedIndex));
+
+            if (cbx_shippingFleets.Items.Count > 0)
+                cbx_shippingFleets.SelectedIndex = 0;
+        }
+
+        private void PopulateColoniesDropdown()
+        {
+            cbx_colonies.Items.Clear();
+
+            //cbx_colonies.Items.AddRange(librarian.GetColoniesList(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex));
+
+            if (cbx_colonies.Items.Count > 0)
+                cbx_colonies.SelectedIndex = 0;
+
+            return;
+        }
+
+        private void ResetDropdowns()
+        {
+            cbx_gamesList.SelectedIndex = -1;
+            cbx_gamesList.Items.Clear();
+
+            cbx_faction.SelectedIndex = -1;
+            cbx_faction.Items.Clear();
+
+            cbx_fleet.SelectedIndex = -1;
+            cbx_fleet.Items.Clear();
+
+            cbx_shippingLines.SelectedIndex = -1;
+            cbx_shippingLines.Items.Clear();
+
+            cbx_shippingFleets.SelectedIndex = -1;
+            cbx_shippingFleets.Items.Clear();
             return;
         }
 
         private void cbx_gamesList_SelectedIndexChanged(object sender, EventArgs e)
         {
             PopulateFactionDropdown();
+            PopulateShippingDropdown();
             return;
         }
 
         private void cbx_faction_SelectedIndexChanged(object sender, EventArgs e)
         {
             PopulateFleetDropdown();
+            PopulateShippingDropdown();
+            return;
+        }
+
+        private void cbx_shippingLines_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PopulateShippingFleetsDropdown();
             return;
         }
     }
