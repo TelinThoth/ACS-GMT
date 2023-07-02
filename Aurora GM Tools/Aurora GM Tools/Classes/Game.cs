@@ -16,10 +16,12 @@ namespace Aurora_GM_Tools.Classes
         public int Game_ID { get { return gameID; } }
 
         public List<Faction> factionsList;
+        public List<Waypoint> waypoints;
 
         public Game()
         {
             factionsList = new List<Faction>();
+            waypoints = new List<Waypoint>();
         }
         public Game(string i_gameName, int i_gameID)
         {
@@ -27,6 +29,7 @@ namespace Aurora_GM_Tools.Classes
             gameID = i_gameID;
 
             factionsList = new List<Faction>();
+            waypoints = new List<Waypoint>();
         }
     }
 }

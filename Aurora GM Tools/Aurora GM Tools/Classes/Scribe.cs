@@ -11,6 +11,7 @@ namespace Aurora_GM_Tools.Classes
 {
     class Scribe
     {
+        public bool gameLoaded = false;
         private string fileLoc = "";
         private string fileName = "AuroraDB.db";
 
@@ -54,6 +55,49 @@ namespace Aurora_GM_Tools.Classes
                 PopulateInternalFleets();
                 PopulateInternalShips();
                 PopulateInternalColonies();
+                PopulateInternalWaypoints();
+                gameLoaded = true;
+            }
+            else
+            {
+                gameLoaded = false;
+            }
+
+            return;
+        }
+
+        public void ChangeGamesFile(string i_file)
+        {
+            gamesList.Clear();
+            // Close DB before we open a new one.
+            if (uplink.State != ConnectionState.Closed)
+                uplink.Close();
+
+            //Update File Location
+            fileLoc = i_file;
+
+            //Correct the \->/
+            fileLoc = fileLoc.Replace('\\', '/');
+
+            //Create new tring
+            dialup.DataSource = fileLoc;
+            if (dialup.Version != 3)
+                dialup.Version = 3;
+
+            uplink.ConnectionString = dialup.ConnectionString;
+            if(File.Exists(dialup.DataSource))
+            {
+                PopulateInternalGames();
+                PopulateInternalFactions();
+                PopulateInternalFleets();
+                PopulateInternalShips();
+                PopulateInternalColonies();
+                PopulateInternalWaypoints();
+                gameLoaded = true;
+            }
+            else
+            {
+                gameLoaded = false;
             }
 
             return;
@@ -109,12 +153,13 @@ namespace Aurora_GM_Tools.Classes
                 {
                     foreach (Faction group in entry.factionsList)
                     {
-                        getFleets.CommandText = "SELECT FleetName, FleetID FROM FCT_Fleet WHERE GameID = " + entry.Game_ID.ToString() + " AND RaceID = " + group.Faction_ID.ToString() + " AND ShippingLine = 0;";
+                        getFleets.CommandText = "SELECT FleetName, FleetID, Xcor, Ycor, SystemID FROM FCT_Fleet WHERE GameID = " + entry.Game_ID.ToString() + " AND RaceID = " + group.Faction_ID.ToString() + " AND ShippingLine = 0;";
                         using (SQLiteDataReader results = getFleets.ExecuteReader())
                         {
                             while (results.Read())
                             {
-                                group.fleetList.Add(new Fleet(results.GetString(0), results.GetInt32(1)));
+                                double[] temp = { results.GetDouble(2), results.GetDouble(3) };
+                                group.fleetList.Add(new Fleet(results.GetString(0), results.GetInt32(1), temp, results.GetInt32(4)));
                             }
                         }
 
@@ -129,12 +174,13 @@ namespace Aurora_GM_Tools.Classes
 
                         foreach (Shipping line in group.shippingLines)
                         {
-                            getFleets.CommandText = "SELECT FleetName, FleetID FROM FCT_Fleet WHERE GameID = " + entry.Game_ID.ToString() + " AND RaceID = " + group.Faction_ID.ToString() + " AND ShippingLine = " + line.Line_ID.ToString() + ";";
+                            getFleets.CommandText = "SELECT FleetName, FleetID, Xcor, Ycor, SystemID FROM FCT_Fleet WHERE GameID = " + entry.Game_ID.ToString() + " AND RaceID = " + group.Faction_ID.ToString() + " AND ShippingLine = " + line.Line_ID.ToString() + ";";
                             using (SQLiteDataReader results = getFleets.ExecuteReader())
                             {
                                 while (results.Read())
                                 {
-                                    line.shippingFleet.Add(new Fleet(results.GetString(0), results.GetInt32(1)));
+                                    double[] temp = { results.GetDouble(2), results.GetDouble(3) };
+                                    group.fleetList.Add(new Fleet(results.GetString(0), results.GetInt32(1), temp, results.GetInt32(4)));
                                 }
                             }
                         }
@@ -244,6 +290,56 @@ namespace Aurora_GM_Tools.Classes
             return;
         }
 
+        private void PopulateInternalWaypoints()
+        {
+            uplink.Open();
+
+            using (SQLiteCommand getWaypoints = new SQLiteCommand(uplink))
+            {
+                foreach (Game entry in gamesList)
+                {
+                    getWaypoints.CommandText = "SELECT WaypointID, Name, Xcor, Ycor, SystemID FROM FCT_Waypoint WHERE GameID = " + entry.Game_ID.ToString() + ";";
+                    using (SQLiteDataReader results = getWaypoints.ExecuteReader())
+                    {
+                        while (results.Read())
+                        {
+                            double[] temp = { results.GetDouble(2), results.GetDouble(3) };
+                            entry.waypoints.Add(new Waypoint(results.GetInt32(0), results.GetString(1), temp, results.GetInt32(4)));
+                        }
+                    }
+                }
+                
+            }
+            uplink.Close();
+            return;
+        }
+
+        public bool TeleportFleet(int gameSel, int factSel, int fleetSel, int waypointSel)
+        {
+            if (gameSel > 0 && factSel > 0 && fleetSel > 0 && waypointSel > 0)
+            {
+                Fleet dock = gamesList[gameSel].factionsList[factSel].fleetList[fleetSel];
+                Waypoint PIS = gamesList[gameSel].waypoints[waypointSel];
+
+                string command = "UPDATE FCT_Fleet SET Xcor = " + PIS.getXPart().ToString() + ", Ycor = " + PIS.getYPart().ToString() + ", SystemID = " + PIS.getSytemID().ToString() + " WHERE FleetID = " + dock.Fleet_ID + ";";
+
+                uplink.Open();
+
+                using (SQLiteCommand teleportFleet = new SQLiteCommand(uplink))
+                {
+                    teleportFleet.CommandText = command;
+                    teleportFleet.ExecuteNonQuery();
+                }
+
+                uplink.Close();
+                return true;
+            }
+            else
+            {
+                return false;   
+            }
+        }
+
         public string[] GetGamesList()
         {
             return gamesList.Select(item => item.Game_Name).ToArray();
@@ -308,6 +404,24 @@ namespace Aurora_GM_Tools.Classes
             string[] rv_none = { "None" };
             if (gameSel > -1 && factSel > -1 && colSel > -1)
                 return gamesList[gameSel].factionsList[factSel].coloniesList[colSel].missileStock.Select(item => item.misAmount.ToString()).ToArray();
+            else
+                return rv_none;
+        }
+
+        public string[] GetWaypoints(int gameSel)
+        {
+            string[] rv_none = { "None" };
+            if (gameSel > -1)
+                return gamesList[gameSel].waypoints.Select(item => item.getName()).ToArray();
+            else
+                return rv_none;
+        }
+
+        public string[] GetMilShipsList(int gameSel, int factSel, int fleetSel)
+        {
+            string[] rv_none = { "None" };
+            if (gameSel > -1 && factSel > -1)
+                return gamesList[gameSel].factionsList[factSel].fleetList[fleetSel].shipList.Select(item => item.Ship_Name).ToArray();
             else
                 return rv_none;
         }

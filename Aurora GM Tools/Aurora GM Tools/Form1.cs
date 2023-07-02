@@ -15,18 +15,78 @@ namespace Aurora_GM_Tools
     {
         private Scribe librarian;
         private string gameLocation;
-        private string[] gamesList;
-        private string[] factionsList;
+
+        private Point activeAnchor = new Point(298, 36);
+        private Point storageAnchor = new Point(1000, 1000);
+
+        private bool venusFlag = false;
+        private string venusText = "Venusian Military Board";
+        private Color[] bgColors = { Color.MediumBlue, ColorTranslator.FromHtml("#FCD116") };
+        private Color[] btnColors = { Color.DarkBlue, ColorTranslator.FromHtml("#C6891F") };
+        private Color[] foreColors = { Color.Lime, ColorTranslator.FromHtml("#F20D0D") };
 
         public Form1()
         {
             InitializeComponent();
             librarian = new Scribe();
+
             DisableDisplay();
+
         }
 
-        private void openGameFileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CheckForVenus()
         {
+            if (librarian.gameLoaded)
+            {
+                if (cbx_faction.SelectedItem.ToString() == venusText && !venusFlag)
+                {
+                    RecursiveChange(this, 1);
+                }
+                else if (cbx_faction.SelectedItem.ToString() != venusText && venusFlag)
+                {
+                    RecursiveChange(this, 0);
+                }
+            }
+        }
+
+        private void RecursiveChange(Control parent, int val)
+        {
+            if (!(parent is ComboBox) && !(parent is MenuStrip) && !(parent is TextBox) && !(parent is ListBox))
+            {
+                if (parent is Button)
+                    parent.BackColor = btnColors[val];
+                else
+                    parent.BackColor = bgColors[val];
+                parent.ForeColor = foreColors[val];
+                if (parent.Controls.Count > 0)
+                    foreach (Control ctrl in parent.Controls)
+                        RecursiveChange(ctrl, val);
+            }
+            return;
+        }
+
+        private void gameFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            librarian.gameLoaded = false;
+            ResetDropdowns();
+            OpenFileDialog openFile = new OpenFileDialog();
+            DialogResult result = openFile.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                gameLocation = openFile.FileName.ToString();
+                librarian.ChangeGamesFile(gameLocation);
+
+                PopulateGamesDropdown();
+                MilShipPanel.Enabled = true;
+                MilShipPanel.Visible = true;
+            }
+
+            return;
+        }
+
+        private void gameDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            librarian.gameLoaded = false;
             ResetDropdowns();
             FolderBrowserDialog openFolder = new FolderBrowserDialog();
             DialogResult result = openFolder.ShowDialog();
@@ -36,11 +96,13 @@ namespace Aurora_GM_Tools
                 librarian.ChangeGames(gameLocation);
 
                 PopulateGamesDropdown();
+                MilShipPanel.Enabled = true;
+                MilShipPanel.Visible = true;
             }
-            
+
             return;
         }
-
+        
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -61,6 +123,8 @@ namespace Aurora_GM_Tools
             GameControlsPanel.Visible = false;
             GameControlsPanel.Enabled = false;
 
+            MilShipPanel.Visible = false;
+            MilShipPanel.Enabled = false;
             return;
         }
 
@@ -70,7 +134,7 @@ namespace Aurora_GM_Tools
 
             cbx_gamesList.Items.AddRange(librarian.GetGamesList());
 
-            if(cbx_gamesList.Items.Count > 0)
+            if (cbx_gamesList.Items.Count > 0)
                 cbx_gamesList.SelectedIndex = 0;
 
             PopulateFactionDropdown();
@@ -108,6 +172,8 @@ namespace Aurora_GM_Tools
             if (cbx_fleet.Items.Count > 0)
                 cbx_fleet.SelectedIndex = 0;
 
+            PopulateWaypointsDropdown();
+            PopulateMilShipsList();
             return;
         }
 
@@ -147,6 +213,30 @@ namespace Aurora_GM_Tools
             return;
         }
 
+        private void PopulateWaypointsDropdown()
+        {
+            cbx_waypoints.Items.Clear();
+
+            cbx_waypoints.Items.AddRange(librarian.GetWaypoints(cbx_gamesList.SelectedIndex));
+
+            if (cbx_waypoints.Items.Count > 0)
+                cbx_waypoints.SelectedIndex = 0;
+
+            return;
+        }
+
+        private void PopulateMilShipsList()
+        {
+            lbx_ships.Items.Clear();
+
+            lbx_ships.Items.AddRange(librarian.GetMilShipsList(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex, cbx_fleet.SelectedIndex));
+
+            if (lbx_ships.Items.Count > 0)
+                lbx_ships.SelectedIndex = 0;
+
+            return;
+        }
+
         private void ResetDropdowns()
         {
             cbx_gamesList.SelectedIndex = -1;
@@ -167,6 +257,9 @@ namespace Aurora_GM_Tools
             cbx_colonies.SelectedIndex = -1;
             cbx_colonies.Items.Clear();
 
+            cbx_waypoints.SelectedIndex = -1;
+            cbx_waypoints.Items.Clear();
+
             return;
         }
 
@@ -182,6 +275,7 @@ namespace Aurora_GM_Tools
             PopulateFleetDropdown();
             PopulateShippingDropdown();
             PopulateColoniesDropdown();
+            CheckForVenus();
             return;
         }
 
@@ -189,6 +283,36 @@ namespace Aurora_GM_Tools
         {
             PopulateShippingFleetsDropdown();
             return;
+        }
+
+        private void cbx_fleet_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PopulateMilShipsList();
+            return;
+        }
+
+        private void btn_teleportFleet_Click(object sender, EventArgs e)
+        {
+            bool rv = librarian.TeleportFleet(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex, cbx_fleet.SelectedIndex, cbx_waypoints.SelectedIndex);
+            if (!rv)
+                MessageBox.Show("There was an Error in attempting to Teleport the fleet.\nWas there a Valid Waypoint?");
+            return;
+        }
+
+        private void tbctl_SelectionOptions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tbctl_SelectionOptions.SelectedTab.Text == "Mil. Fleets")
+            {
+                MilShipPanel.Visible = true;
+                MilShipPanel.Enabled = true;
+                MilShipPanel.Location = activeAnchor;
+            }
+            else
+            {
+                MilShipPanel.Visible = false;
+                MilShipPanel.Enabled = false;
+                MilShipPanel.Location = storageAnchor;
+            }
         }
     }
 }
