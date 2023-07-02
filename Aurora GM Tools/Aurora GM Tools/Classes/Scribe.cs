@@ -316,7 +316,7 @@ namespace Aurora_GM_Tools.Classes
 
         public bool TeleportFleet(int gameSel, int factSel, int fleetSel, int waypointSel)
         {
-            if (gameSel > 0 && factSel > 0 && fleetSel > 0 && waypointSel > 0)
+            if (gameSel > -1 && factSel > -1 && fleetSel > -1 && waypointSel > -1)
             {
                 Fleet dock = gamesList[gameSel].factionsList[factSel].fleetList[fleetSel];
                 Waypoint PIS = gamesList[gameSel].waypoints[waypointSel];

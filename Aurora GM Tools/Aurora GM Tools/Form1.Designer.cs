@@ -32,8 +32,8 @@ namespace Aurora_GM_Tools
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openGameFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gameFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gameDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gameFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cbx_gamesList = new System.Windows.Forms.ComboBox();
@@ -41,6 +41,8 @@ namespace Aurora_GM_Tools
             this.GameControlsPanel = new System.Windows.Forms.Panel();
             this.tbctl_SelectionOptions = new System.Windows.Forms.TabControl();
             this.tab_fleets = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.btn_updateTraining = new System.Windows.Forms.Button();
             this.tbx_CurrentTrain = new System.Windows.Forms.TextBox();
             this.tbx_Adjustment = new System.Windows.Forms.TextBox();
@@ -64,8 +66,6 @@ namespace Aurora_GM_Tools
             this.lbx_ships = new System.Windows.Forms.ListBox();
             this.MilShipPanel = new System.Windows.Forms.Panel();
             this.lbl_MilShips = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.GameControlsPanel.SuspendLayout();
             this.tbctl_SelectionOptions.SuspendLayout();
@@ -77,13 +77,13 @@ namespace Aurora_GM_Tools
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1253, 33);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
+            this.menuStrip1.Size = new System.Drawing.Size(835, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -94,7 +94,7 @@ namespace Aurora_GM_Tools
             this.closeGameToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 22);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // openGameFileToolStripMenuItem
@@ -103,34 +103,34 @@ namespace Aurora_GM_Tools
             this.gameDirectoryToolStripMenuItem,
             this.gameFileToolStripMenuItem});
             this.openGameFileToolStripMenuItem.Name = "openGameFileToolStripMenuItem";
-            this.openGameFileToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.openGameFileToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.openGameFileToolStripMenuItem.Text = "Open Game";
-            // 
-            // gameFileToolStripMenuItem
-            // 
-            this.gameFileToolStripMenuItem.Name = "gameFileToolStripMenuItem";
-            this.gameFileToolStripMenuItem.Size = new System.Drawing.Size(237, 34);
-            this.gameFileToolStripMenuItem.Text = "Game File";
-            this.gameFileToolStripMenuItem.Click += new System.EventHandler(this.gameFileToolStripMenuItem_Click);
             // 
             // gameDirectoryToolStripMenuItem
             // 
             this.gameDirectoryToolStripMenuItem.Name = "gameDirectoryToolStripMenuItem";
-            this.gameDirectoryToolStripMenuItem.Size = new System.Drawing.Size(237, 34);
+            this.gameDirectoryToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.gameDirectoryToolStripMenuItem.Text = "Game Directory";
             this.gameDirectoryToolStripMenuItem.Click += new System.EventHandler(this.gameDirectoryToolStripMenuItem_Click);
+            // 
+            // gameFileToolStripMenuItem
+            // 
+            this.gameFileToolStripMenuItem.Name = "gameFileToolStripMenuItem";
+            this.gameFileToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.gameFileToolStripMenuItem.Text = "Game File";
+            this.gameFileToolStripMenuItem.Click += new System.EventHandler(this.gameFileToolStripMenuItem_Click);
             // 
             // closeGameToolStripMenuItem
             // 
             this.closeGameToolStripMenuItem.Name = "closeGameToolStripMenuItem";
-            this.closeGameToolStripMenuItem.Size = new System.Drawing.Size(209, 34);
+            this.closeGameToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.closeGameToolStripMenuItem.Text = "Close Game";
             this.closeGameToolStripMenuItem.Click += new System.EventHandler(this.closeGameToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(209, 34);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -139,9 +139,10 @@ namespace Aurora_GM_Tools
             this.cbx_gamesList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_gamesList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_gamesList.FormattingEnabled = true;
-            this.cbx_gamesList.Location = new System.Drawing.Point(106, 13);
+            this.cbx_gamesList.Location = new System.Drawing.Point(71, 8);
+            this.cbx_gamesList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbx_gamesList.Name = "cbx_gamesList";
-            this.cbx_gamesList.Size = new System.Drawing.Size(295, 37);
+            this.cbx_gamesList.Size = new System.Drawing.Size(198, 28);
             this.cbx_gamesList.TabIndex = 1;
             this.cbx_gamesList.SelectedIndexChanged += new System.EventHandler(this.cbx_gamesList_SelectedIndexChanged);
             // 
@@ -150,9 +151,10 @@ namespace Aurora_GM_Tools
             this.lbl_gameList.AutoSize = true;
             this.lbl_gameList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_gameList.ForeColor = System.Drawing.Color.Lime;
-            this.lbl_gameList.Location = new System.Drawing.Point(3, 16);
+            this.lbl_gameList.Location = new System.Drawing.Point(2, 10);
+            this.lbl_gameList.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_gameList.Name = "lbl_gameList";
-            this.lbl_gameList.Size = new System.Drawing.Size(84, 29);
+            this.lbl_gameList.Size = new System.Drawing.Size(57, 20);
             this.lbl_gameList.TabIndex = 2;
             this.lbl_gameList.Text = "Game:";
             // 
@@ -164,9 +166,10 @@ namespace Aurora_GM_Tools
             this.GameControlsPanel.Controls.Add(this.cbx_gamesList);
             this.GameControlsPanel.Controls.Add(this.lbl_gameList);
             this.GameControlsPanel.ForeColor = System.Drawing.Color.Lime;
-            this.GameControlsPanel.Location = new System.Drawing.Point(10, 55);
+            this.GameControlsPanel.Location = new System.Drawing.Point(7, 36);
+            this.GameControlsPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.GameControlsPanel.Name = "GameControlsPanel";
-            this.GameControlsPanel.Size = new System.Drawing.Size(421, 984);
+            this.GameControlsPanel.Size = new System.Drawing.Size(281, 640);
             this.GameControlsPanel.TabIndex = 3;
             // 
             // tbctl_SelectionOptions
@@ -176,10 +179,11 @@ namespace Aurora_GM_Tools
             this.tbctl_SelectionOptions.Controls.Add(this.tab_Colonies);
             this.tbctl_SelectionOptions.Enabled = false;
             this.tbctl_SelectionOptions.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbctl_SelectionOptions.Location = new System.Drawing.Point(8, 114);
+            this.tbctl_SelectionOptions.Location = new System.Drawing.Point(5, 74);
+            this.tbctl_SelectionOptions.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbctl_SelectionOptions.Name = "tbctl_SelectionOptions";
             this.tbctl_SelectionOptions.SelectedIndex = 0;
-            this.tbctl_SelectionOptions.Size = new System.Drawing.Size(396, 525);
+            this.tbctl_SelectionOptions.Size = new System.Drawing.Size(264, 341);
             this.tbctl_SelectionOptions.TabIndex = 4;
             this.tbctl_SelectionOptions.Visible = false;
             this.tbctl_SelectionOptions.SelectedIndexChanged += new System.EventHandler(this.tbctl_SelectionOptions_SelectedIndexChanged);
@@ -201,54 +205,80 @@ namespace Aurora_GM_Tools
             this.tab_fleets.Controls.Add(this.lbl_Fleet_Actions);
             this.tab_fleets.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tab_fleets.ForeColor = System.Drawing.Color.Lime;
-            this.tab_fleets.Location = new System.Drawing.Point(4, 38);
+            this.tab_fleets.Location = new System.Drawing.Point(4, 29);
+            this.tab_fleets.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tab_fleets.Name = "tab_fleets";
-            this.tab_fleets.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_fleets.Size = new System.Drawing.Size(388, 483);
+            this.tab_fleets.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tab_fleets.Size = new System.Drawing.Size(256, 308);
             this.tab_fleets.TabIndex = 0;
             this.tab_fleets.Text = "Mil. Fleets";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(153, 241);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 20);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "New Level";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(51, 242);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(57, 20);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Curent";
             // 
             // btn_updateTraining
             // 
             this.btn_updateTraining.BackColor = System.Drawing.Color.DarkBlue;
             this.btn_updateTraining.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btn_updateTraining.Location = new System.Drawing.Point(56, 405);
+            this.btn_updateTraining.Location = new System.Drawing.Point(37, 263);
+            this.btn_updateTraining.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_updateTraining.Name = "btn_updateTraining";
-            this.btn_updateTraining.Size = new System.Drawing.Size(286, 42);
+            this.btn_updateTraining.Size = new System.Drawing.Size(191, 27);
             this.btn_updateTraining.TabIndex = 16;
             this.btn_updateTraining.Text = "Update Training Grade";
             this.btn_updateTraining.UseVisualStyleBackColor = false;
             // 
             // tbx_CurrentTrain
             // 
-            this.tbx_CurrentTrain.Location = new System.Drawing.Point(42, 333);
+            this.tbx_CurrentTrain.Location = new System.Drawing.Point(28, 216);
+            this.tbx_CurrentTrain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbx_CurrentTrain.Name = "tbx_CurrentTrain";
             this.tbx_CurrentTrain.ReadOnly = true;
-            this.tbx_CurrentTrain.Size = new System.Drawing.Size(152, 35);
+            this.tbx_CurrentTrain.Size = new System.Drawing.Size(103, 26);
             this.tbx_CurrentTrain.TabIndex = 15;
             // 
             // tbx_Adjustment
             // 
-            this.tbx_Adjustment.Location = new System.Drawing.Point(219, 333);
+            this.tbx_Adjustment.Location = new System.Drawing.Point(146, 216);
+            this.tbx_Adjustment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbx_Adjustment.Name = "tbx_Adjustment";
-            this.tbx_Adjustment.Size = new System.Drawing.Size(150, 35);
+            this.tbx_Adjustment.Size = new System.Drawing.Size(101, 26);
             this.tbx_Adjustment.TabIndex = 14;
             // 
             // lbl_TrainingGrade
             // 
             this.lbl_TrainingGrade.AutoSize = true;
-            this.lbl_TrainingGrade.Location = new System.Drawing.Point(36, 290);
+            this.lbl_TrainingGrade.Location = new System.Drawing.Point(24, 188);
+            this.lbl_TrainingGrade.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_TrainingGrade.Name = "lbl_TrainingGrade";
-            this.lbl_TrainingGrade.Size = new System.Drawing.Size(175, 29);
+            this.lbl_TrainingGrade.Size = new System.Drawing.Size(114, 20);
             this.lbl_TrainingGrade.TabIndex = 13;
             this.lbl_TrainingGrade.Text = "Training Grade";
             // 
             // lbl_Waypoints
             // 
             this.lbl_Waypoints.AutoSize = true;
-            this.lbl_Waypoints.Location = new System.Drawing.Point(36, 152);
+            this.lbl_Waypoints.Location = new System.Drawing.Point(24, 99);
+            this.lbl_Waypoints.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_Waypoints.Name = "lbl_Waypoints";
-            this.lbl_Waypoints.Size = new System.Drawing.Size(124, 29);
+            this.lbl_Waypoints.Size = new System.Drawing.Size(83, 20);
             this.lbl_Waypoints.TabIndex = 11;
             this.lbl_Waypoints.Text = "Waypoints";
             // 
@@ -257,9 +287,10 @@ namespace Aurora_GM_Tools
             this.cbx_fleet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_fleet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_fleet.FormattingEnabled = true;
-            this.cbx_fleet.Location = new System.Drawing.Point(13, 41);
+            this.cbx_fleet.Location = new System.Drawing.Point(9, 27);
+            this.cbx_fleet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbx_fleet.Name = "cbx_fleet";
-            this.cbx_fleet.Size = new System.Drawing.Size(356, 37);
+            this.cbx_fleet.Size = new System.Drawing.Size(239, 28);
             this.cbx_fleet.TabIndex = 5;
             this.cbx_fleet.SelectedIndexChanged += new System.EventHandler(this.cbx_fleet_SelectedIndexChanged);
             // 
@@ -267,9 +298,10 @@ namespace Aurora_GM_Tools
             // 
             this.cbx_waypoints.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_waypoints.FormattingEnabled = true;
-            this.cbx_waypoints.Location = new System.Drawing.Point(41, 184);
+            this.cbx_waypoints.Location = new System.Drawing.Point(27, 120);
+            this.cbx_waypoints.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbx_waypoints.Name = "cbx_waypoints";
-            this.cbx_waypoints.Size = new System.Drawing.Size(328, 37);
+            this.cbx_waypoints.Size = new System.Drawing.Size(220, 28);
             this.cbx_waypoints.TabIndex = 10;
             // 
             // lbl_fleet
@@ -277,9 +309,10 @@ namespace Aurora_GM_Tools
             this.lbl_fleet.AutoSize = true;
             this.lbl_fleet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_fleet.ForeColor = System.Drawing.Color.Lime;
-            this.lbl_fleet.Location = new System.Drawing.Point(8, 9);
+            this.lbl_fleet.Location = new System.Drawing.Point(5, 6);
+            this.lbl_fleet.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_fleet.Name = "lbl_fleet";
-            this.lbl_fleet.Size = new System.Drawing.Size(68, 29);
+            this.lbl_fleet.Size = new System.Drawing.Size(45, 20);
             this.lbl_fleet.TabIndex = 6;
             this.lbl_fleet.Text = "Fleet";
             // 
@@ -287,9 +320,10 @@ namespace Aurora_GM_Tools
             // 
             this.btn_teleportFleet.BackColor = System.Drawing.Color.DarkBlue;
             this.btn_teleportFleet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btn_teleportFleet.Location = new System.Drawing.Point(74, 227);
+            this.btn_teleportFleet.Location = new System.Drawing.Point(49, 148);
+            this.btn_teleportFleet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_teleportFleet.Name = "btn_teleportFleet";
-            this.btn_teleportFleet.Size = new System.Drawing.Size(254, 42);
+            this.btn_teleportFleet.Size = new System.Drawing.Size(169, 27);
             this.btn_teleportFleet.TabIndex = 7;
             this.btn_teleportFleet.Text = "Teleport to Waypoint";
             this.btn_teleportFleet.UseVisualStyleBackColor = false;
@@ -298,9 +332,10 @@ namespace Aurora_GM_Tools
             // lbl_Fleet_Actions
             // 
             this.lbl_Fleet_Actions.AutoSize = true;
-            this.lbl_Fleet_Actions.Location = new System.Drawing.Point(8, 123);
+            this.lbl_Fleet_Actions.Location = new System.Drawing.Point(5, 80);
+            this.lbl_Fleet_Actions.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_Fleet_Actions.Name = "lbl_Fleet_Actions";
-            this.lbl_Fleet_Actions.Size = new System.Drawing.Size(152, 29);
+            this.lbl_Fleet_Actions.Size = new System.Drawing.Size(102, 20);
             this.lbl_Fleet_Actions.TabIndex = 8;
             this.lbl_Fleet_Actions.Text = "Fleet Actions";
             // 
@@ -312,10 +347,11 @@ namespace Aurora_GM_Tools
             this.tab_CivFleets.Controls.Add(this.cbx_shippingLines);
             this.tab_CivFleets.Controls.Add(this.lbl_shippingFleets);
             this.tab_CivFleets.ForeColor = System.Drawing.Color.Lime;
-            this.tab_CivFleets.Location = new System.Drawing.Point(4, 38);
+            this.tab_CivFleets.Location = new System.Drawing.Point(4, 29);
+            this.tab_CivFleets.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tab_CivFleets.Name = "tab_CivFleets";
-            this.tab_CivFleets.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_CivFleets.Size = new System.Drawing.Size(388, 483);
+            this.tab_CivFleets.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tab_CivFleets.Size = new System.Drawing.Size(256, 308);
             this.tab_CivFleets.TabIndex = 2;
             this.tab_CivFleets.Text = "Civ. Fleets";
             // 
@@ -324,9 +360,10 @@ namespace Aurora_GM_Tools
             this.cbx_shippingFleets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_shippingFleets.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_shippingFleets.FormattingEnabled = true;
-            this.cbx_shippingFleets.Location = new System.Drawing.Point(8, 118);
+            this.cbx_shippingFleets.Location = new System.Drawing.Point(5, 77);
+            this.cbx_shippingFleets.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbx_shippingFleets.Name = "cbx_shippingFleets";
-            this.cbx_shippingFleets.Size = new System.Drawing.Size(356, 37);
+            this.cbx_shippingFleets.Size = new System.Drawing.Size(239, 28);
             this.cbx_shippingFleets.TabIndex = 10;
             // 
             // lbl_shippingLines
@@ -334,9 +371,10 @@ namespace Aurora_GM_Tools
             this.lbl_shippingLines.AutoSize = true;
             this.lbl_shippingLines.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_shippingLines.ForeColor = System.Drawing.Color.Lime;
-            this.lbl_shippingLines.Location = new System.Drawing.Point(3, 3);
+            this.lbl_shippingLines.Location = new System.Drawing.Point(2, 2);
+            this.lbl_shippingLines.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_shippingLines.Name = "lbl_shippingLines";
-            this.lbl_shippingLines.Size = new System.Drawing.Size(155, 29);
+            this.lbl_shippingLines.Size = new System.Drawing.Size(100, 20);
             this.lbl_shippingLines.TabIndex = 8;
             this.lbl_shippingLines.Text = "Civ. Shipping";
             // 
@@ -345,9 +383,10 @@ namespace Aurora_GM_Tools
             this.cbx_shippingLines.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_shippingLines.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_shippingLines.FormattingEnabled = true;
-            this.cbx_shippingLines.Location = new System.Drawing.Point(8, 35);
+            this.cbx_shippingLines.Location = new System.Drawing.Point(5, 23);
+            this.cbx_shippingLines.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbx_shippingLines.Name = "cbx_shippingLines";
-            this.cbx_shippingLines.Size = new System.Drawing.Size(356, 37);
+            this.cbx_shippingLines.Size = new System.Drawing.Size(239, 28);
             this.cbx_shippingLines.TabIndex = 7;
             this.cbx_shippingLines.SelectedIndexChanged += new System.EventHandler(this.cbx_shippingLines_SelectedIndexChanged);
             // 
@@ -356,9 +395,10 @@ namespace Aurora_GM_Tools
             this.lbl_shippingFleets.AutoSize = true;
             this.lbl_shippingFleets.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_shippingFleets.ForeColor = System.Drawing.Color.Lime;
-            this.lbl_shippingFleets.Location = new System.Drawing.Point(1, 86);
+            this.lbl_shippingFleets.Location = new System.Drawing.Point(1, 56);
+            this.lbl_shippingFleets.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_shippingFleets.Name = "lbl_shippingFleets";
-            this.lbl_shippingFleets.Size = new System.Drawing.Size(188, 29);
+            this.lbl_shippingFleets.Size = new System.Drawing.Size(123, 20);
             this.lbl_shippingFleets.TabIndex = 9;
             this.lbl_shippingFleets.Text = "Shipping Fleets:";
             // 
@@ -368,10 +408,11 @@ namespace Aurora_GM_Tools
             this.tab_Colonies.Controls.Add(this.cbx_colonies);
             this.tab_Colonies.Controls.Add(this.label1);
             this.tab_Colonies.ForeColor = System.Drawing.Color.Lime;
-            this.tab_Colonies.Location = new System.Drawing.Point(4, 38);
+            this.tab_Colonies.Location = new System.Drawing.Point(4, 29);
+            this.tab_Colonies.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tab_Colonies.Name = "tab_Colonies";
-            this.tab_Colonies.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_Colonies.Size = new System.Drawing.Size(388, 483);
+            this.tab_Colonies.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tab_Colonies.Size = new System.Drawing.Size(256, 308);
             this.tab_Colonies.TabIndex = 1;
             this.tab_Colonies.Text = "Colonies";
             // 
@@ -380,9 +421,10 @@ namespace Aurora_GM_Tools
             this.cbx_colonies.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_colonies.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_colonies.FormattingEnabled = true;
-            this.cbx_colonies.Location = new System.Drawing.Point(6, 34);
+            this.cbx_colonies.Location = new System.Drawing.Point(4, 22);
+            this.cbx_colonies.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbx_colonies.Name = "cbx_colonies";
-            this.cbx_colonies.Size = new System.Drawing.Size(356, 37);
+            this.cbx_colonies.Size = new System.Drawing.Size(239, 28);
             this.cbx_colonies.TabIndex = 7;
             // 
             // label1
@@ -390,9 +432,10 @@ namespace Aurora_GM_Tools
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Lime;
-            this.label1.Location = new System.Drawing.Point(1, 2);
+            this.label1.Location = new System.Drawing.Point(1, 1);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 29);
+            this.label1.Size = new System.Drawing.Size(70, 20);
             this.label1.TabIndex = 8;
             this.label1.Text = "Colonies";
             // 
@@ -401,9 +444,10 @@ namespace Aurora_GM_Tools
             this.cbx_faction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_faction.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_faction.FormattingEnabled = true;
-            this.cbx_faction.Location = new System.Drawing.Point(106, 56);
+            this.cbx_faction.Location = new System.Drawing.Point(71, 36);
+            this.cbx_faction.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbx_faction.Name = "cbx_faction";
-            this.cbx_faction.Size = new System.Drawing.Size(295, 37);
+            this.cbx_faction.Size = new System.Drawing.Size(198, 28);
             this.cbx_faction.TabIndex = 3;
             this.cbx_faction.SelectedIndexChanged += new System.EventHandler(this.cbx_faction_SelectedIndexChanged);
             // 
@@ -412,9 +456,10 @@ namespace Aurora_GM_Tools
             this.lbl_Faction.AutoSize = true;
             this.lbl_Faction.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Faction.ForeColor = System.Drawing.Color.Lime;
-            this.lbl_Faction.Location = new System.Drawing.Point(3, 59);
+            this.lbl_Faction.Location = new System.Drawing.Point(2, 38);
+            this.lbl_Faction.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_Faction.Name = "lbl_Faction";
-            this.lbl_Faction.Size = new System.Drawing.Size(98, 29);
+            this.lbl_Faction.Size = new System.Drawing.Size(66, 20);
             this.lbl_Faction.TabIndex = 4;
             this.lbl_Faction.Text = "Faction:";
             // 
@@ -422,10 +467,11 @@ namespace Aurora_GM_Tools
             // 
             this.lbx_ships.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbx_ships.FormattingEnabled = true;
-            this.lbx_ships.ItemHeight = 29;
-            this.lbx_ships.Location = new System.Drawing.Point(20, 63);
+            this.lbx_ships.ItemHeight = 20;
+            this.lbx_ships.Location = new System.Drawing.Point(17, 51);
+            this.lbx_ships.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lbx_ships.Name = "lbx_ships";
-            this.lbx_ships.Size = new System.Drawing.Size(374, 584);
+            this.lbx_ships.Size = new System.Drawing.Size(251, 364);
             this.lbx_ships.TabIndex = 5;
             // 
             // MilShipPanel
@@ -433,9 +479,10 @@ namespace Aurora_GM_Tools
             this.MilShipPanel.Controls.Add(this.lbl_MilShips);
             this.MilShipPanel.Controls.Add(this.lbx_ships);
             this.MilShipPanel.Enabled = false;
-            this.MilShipPanel.Location = new System.Drawing.Point(447, 55);
+            this.MilShipPanel.Location = new System.Drawing.Point(298, 36);
+            this.MilShipPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MilShipPanel.Name = "MilShipPanel";
-            this.MilShipPanel.Size = new System.Drawing.Size(794, 984);
+            this.MilShipPanel.Size = new System.Drawing.Size(529, 640);
             this.MilShipPanel.TabIndex = 4;
             this.MilShipPanel.Visible = false;
             // 
@@ -444,40 +491,24 @@ namespace Aurora_GM_Tools
             this.lbl_MilShips.AutoSize = true;
             this.lbl_MilShips.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lbl_MilShips.ForeColor = System.Drawing.Color.Lime;
-            this.lbl_MilShips.Location = new System.Drawing.Point(20, 24);
+            this.lbl_MilShips.Location = new System.Drawing.Point(13, 16);
+            this.lbl_MilShips.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_MilShips.Name = "lbl_MilShips";
-            this.lbl_MilShips.Size = new System.Drawing.Size(162, 29);
+            this.lbl_MilShips.Size = new System.Drawing.Size(105, 20);
             this.lbl_MilShips.TabIndex = 6;
             this.lbl_MilShips.Text = "Military Ships:";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(76, 373);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 29);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "Curent";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(229, 371);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(127, 29);
-            this.label3.TabIndex = 18;
-            this.label3.Text = "New Level";
-            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MediumBlue;
-            this.ClientSize = new System.Drawing.Size(1253, 1051);
+            this.ClientSize = new System.Drawing.Size(835, 683);
             this.Controls.Add(this.MilShipPanel);
             this.Controls.Add(this.GameControlsPanel);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Telin\'s Aurora4x GM Tools";
             this.menuStrip1.ResumeLayout(false);
