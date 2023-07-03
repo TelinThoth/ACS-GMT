@@ -236,7 +236,20 @@ namespace Aurora_GM_Tools
                 lbx_ships.SelectedIndex = 0;
 
             PopulateFleetTraining();
+            PopulateCrewTraining();
 
+            return;
+        }
+
+        private void PopulateFleetTraining()
+        {
+            tbx_CurrentTrain.Text = librarian.GetFleetTraining(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex, cbx_fleet.SelectedIndex, lbx_ships.SelectedIndex);
+            return;
+        }
+
+        private void PopulateCrewTraining()
+        {
+            tbx_CurrentCrew.Text = librarian.GetCrewTraining(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex, cbx_fleet.SelectedIndex, lbx_ships.SelectedIndex);
             return;
         }
 
@@ -292,6 +305,7 @@ namespace Aurora_GM_Tools
         {
             PopulateMilShipsList();
             PopulateFleetTraining();
+            PopulateCrewTraining();
             return;
         }
 
@@ -319,12 +333,6 @@ namespace Aurora_GM_Tools
             }
         }
 
-        private void PopulateFleetTraining()
-        {
-            tbx_CurrentTrain.Text = librarian.GetFleetTraining(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex, cbx_fleet.SelectedIndex, lbx_ships.SelectedIndex);
-            return;
-        }
-
         private void btn_updateTraining_Click(object sender, EventArgs e)
         {
             double adjustedValue;
@@ -346,6 +354,7 @@ namespace Aurora_GM_Tools
         private void lbx_ships_SelectedIndexChanged(object sender, EventArgs e)
         {
             PopulateFleetTraining();
+            PopulateCrewTraining();
         }
 
         private void btn_applyAll_Click(object sender, EventArgs e)
@@ -364,6 +373,43 @@ namespace Aurora_GM_Tools
             }
 
             PopulateFleetTraining();
+            return;
+        }
+
+        private void btn_UpdateCrew_Click(object sender, EventArgs e)
+        {
+            double adjustedValue;
+            double.TryParse(tbx_CrewAjustment.Text, out adjustedValue);
+
+            if (adjustedValue > 0 && adjustedValue <= 10000)
+            {
+                librarian.UpdateCrewGrade(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex, cbx_fleet.SelectedIndex, lbx_ships.SelectedIndex, adjustedValue);
+            }
+            else
+            {
+                MessageBox.Show("The New Value must be a number between 0 and 1000.");
+            }
+
+            PopulateCrewTraining();
+            return;
+        }
+
+        private void btn_CrewAdjustAll_Click(object sender, EventArgs e)
+        {
+            double adjustedValue;
+            double.TryParse(tbx_CrewAjustment.Text, out adjustedValue);
+
+            if (adjustedValue > 0 && adjustedValue <= 10000)
+            {
+                for (int i = 0; i < lbx_ships.Items.Count; i++)
+                    librarian.UpdateCrewGrade(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex, cbx_fleet.SelectedIndex, i, adjustedValue);
+            }
+            else
+            {
+                MessageBox.Show("The New Value must be a number between 0 and 1000.");
+            }
+
+            PopulateCrewTraining();
             return;
         }
     }

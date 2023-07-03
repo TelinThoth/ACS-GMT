@@ -67,6 +67,13 @@ namespace Aurora_GM_Tools
             this.MilShipPanel = new System.Windows.Forms.Panel();
             this.lbl_MilShips = new System.Windows.Forms.Label();
             this.btn_applyAll = new System.Windows.Forms.Button();
+            this.btn_CrewAdjustAll = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btn_UpdateCrew = new System.Windows.Forms.Button();
+            this.tbx_CurrentCrew = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tbx_CrewAjustment = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.GameControlsPanel.SuspendLayout();
             this.tbctl_SelectionOptions.SuspendLayout();
@@ -236,6 +243,7 @@ namespace Aurora_GM_Tools
             // 
             // tbx_CurrentTrain
             // 
+            this.tbx_CurrentTrain.BackColor = System.Drawing.SystemColors.Control;
             this.tbx_CurrentTrain.Cursor = System.Windows.Forms.Cursors.No;
             this.tbx_CurrentTrain.Location = new System.Drawing.Point(420, 121);
             this.tbx_CurrentTrain.Name = "tbx_CurrentTrain";
@@ -439,7 +447,7 @@ namespace Aurora_GM_Tools
             this.lbx_ships.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbx_ships.FormattingEnabled = true;
             this.lbx_ships.ItemHeight = 29;
-            this.lbx_ships.Location = new System.Drawing.Point(26, 78);
+            this.lbx_ships.Location = new System.Drawing.Point(25, 85);
             this.lbx_ships.Name = "lbx_ships";
             this.lbx_ships.Size = new System.Drawing.Size(374, 555);
             this.lbx_ships.TabIndex = 5;
@@ -447,6 +455,13 @@ namespace Aurora_GM_Tools
             // 
             // MilShipPanel
             // 
+            this.MilShipPanel.Controls.Add(this.btn_CrewAdjustAll);
+            this.MilShipPanel.Controls.Add(this.label4);
+            this.MilShipPanel.Controls.Add(this.label5);
+            this.MilShipPanel.Controls.Add(this.btn_UpdateCrew);
+            this.MilShipPanel.Controls.Add(this.tbx_CurrentCrew);
+            this.MilShipPanel.Controls.Add(this.label6);
+            this.MilShipPanel.Controls.Add(this.tbx_CrewAjustment);
             this.MilShipPanel.Controls.Add(this.btn_applyAll);
             this.MilShipPanel.Controls.Add(this.label3);
             this.MilShipPanel.Controls.Add(this.lbl_MilShips);
@@ -470,7 +485,7 @@ namespace Aurora_GM_Tools
             this.lbl_MilShips.AutoSize = true;
             this.lbl_MilShips.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lbl_MilShips.ForeColor = System.Drawing.Color.Lime;
-            this.lbl_MilShips.Location = new System.Drawing.Point(20, 25);
+            this.lbl_MilShips.Location = new System.Drawing.Point(20, 53);
             this.lbl_MilShips.Name = "lbl_MilShips";
             this.lbl_MilShips.Size = new System.Drawing.Size(162, 29);
             this.lbl_MilShips.TabIndex = 6;
@@ -487,6 +502,73 @@ namespace Aurora_GM_Tools
             this.btn_applyAll.Text = "Apply To All";
             this.btn_applyAll.UseVisualStyleBackColor = false;
             this.btn_applyAll.Click += new System.EventHandler(this.btn_applyAll_Click);
+            // 
+            // btn_CrewAdjustAll
+            // 
+            this.btn_CrewAdjustAll.BackColor = System.Drawing.Color.DarkBlue;
+            this.btn_CrewAdjustAll.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn_CrewAdjustAll.Location = new System.Drawing.Point(420, 598);
+            this.btn_CrewAdjustAll.Name = "btn_CrewAdjustAll";
+            this.btn_CrewAdjustAll.Size = new System.Drawing.Size(327, 42);
+            this.btn_CrewAdjustAll.TabIndex = 26;
+            this.btn_CrewAdjustAll.Text = "Apply To All";
+            this.btn_CrewAdjustAll.UseVisualStyleBackColor = false;
+            this.btn_CrewAdjustAll.Click += new System.EventHandler(this.btn_CrewAdjustAll_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(608, 516);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(127, 29);
+            this.label4.TabIndex = 25;
+            this.label4.Text = "New Level";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(453, 516);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 29);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Current";
+            // 
+            // btn_UpdateCrew
+            // 
+            this.btn_UpdateCrew.BackColor = System.Drawing.Color.DarkBlue;
+            this.btn_UpdateCrew.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn_UpdateCrew.Location = new System.Drawing.Point(420, 550);
+            this.btn_UpdateCrew.Name = "btn_UpdateCrew";
+            this.btn_UpdateCrew.Size = new System.Drawing.Size(327, 42);
+            this.btn_UpdateCrew.TabIndex = 23;
+            this.btn_UpdateCrew.Text = "Upgrade Single";
+            this.btn_UpdateCrew.UseVisualStyleBackColor = false;
+            this.btn_UpdateCrew.Click += new System.EventHandler(this.btn_UpdateCrew_Click);
+            // 
+            // tbx_CurrentCrew
+            // 
+            this.tbx_CurrentCrew.Cursor = System.Windows.Forms.Cursors.No;
+            this.tbx_CurrentCrew.Location = new System.Drawing.Point(420, 477);
+            this.tbx_CurrentCrew.Name = "tbx_CurrentCrew";
+            this.tbx_CurrentCrew.ReadOnly = true;
+            this.tbx_CurrentCrew.Size = new System.Drawing.Size(152, 35);
+            this.tbx_CurrentCrew.TabIndex = 22;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(414, 434);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(165, 29);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "Crew Training";
+            // 
+            // tbx_CrewAjustment
+            // 
+            this.tbx_CrewAjustment.Location = new System.Drawing.Point(597, 477);
+            this.tbx_CrewAjustment.Name = "tbx_CrewAjustment";
+            this.tbx_CrewAjustment.Size = new System.Drawing.Size(150, 35);
+            this.tbx_CrewAjustment.TabIndex = 21;
             // 
             // Form1
             // 
@@ -558,6 +640,13 @@ namespace Aurora_GM_Tools
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_applyAll;
+        private System.Windows.Forms.Button btn_CrewAdjustAll;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btn_UpdateCrew;
+        private System.Windows.Forms.TextBox tbx_CurrentCrew;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox tbx_CrewAjustment;
     }
 }
 

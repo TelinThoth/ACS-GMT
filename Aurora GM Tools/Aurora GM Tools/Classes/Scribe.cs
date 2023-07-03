@@ -370,6 +370,35 @@ namespace Aurora_GM_Tools.Classes
             }
         }
 
+        public bool UpdateCrewGrade(int gameSel, int factSel, int fleetSel, int shipSel, double val)
+        {
+            if (gameSel > -1 && factSel > -1 && fleetSel > -1 && fleetSel > -1 && val > -1)
+            {
+                string command = "UPDATE FCT_Ship SET GradePoints = " + val.ToString() +
+                                 " WHERE GameID = " + gamesList[gameSel].Game_ID.ToString() +
+                                 " AND RaceID = " + gamesList[gameSel].factionsList[factSel].Faction_ID.ToString() +
+                                 " AND FleetID = " + gamesList[gameSel].factionsList[factSel].fleetList[fleetSel].Fleet_ID.ToString() +
+                                 " AND ShipID = " + gamesList[gameSel].factionsList[factSel].fleetList[fleetSel].shipList[shipSel].Ship_ID.ToString() + ";";
+                uplink.Open();
+
+                using (SQLiteCommand upgradeCrew = new SQLiteCommand(uplink))
+                {
+                    upgradeCrew.CommandText = command;
+                    upgradeCrew.ExecuteNonQuery();
+                }
+
+                uplink.Close();
+
+                gamesList[gameSel].factionsList[factSel].fleetList[fleetSel].shipList[shipSel].gradePoints = val;
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public string[] GetGamesList()
         {
             return gamesList.Select(item => item.Game_Name).ToArray();
@@ -461,6 +490,16 @@ namespace Aurora_GM_Tools.Classes
             if (gameSel > -1 && factSel > -1 && fleetSel > -1 && shipSel > -1)
             {
                 return gamesList[gameSel].factionsList[factSel].fleetList[fleetSel].shipList[shipSel].taskForcePoints.ToString();
+            }
+            else
+                return "";
+        }
+
+        public string GetCrewTraining(int gameSel, int factSel, int fleetSel, int shipSel)
+        {
+            if (gameSel > -1 && factSel > -1 && fleetSel > -1 && shipSel > -1)
+            {
+                return gamesList[gameSel].factionsList[factSel].fleetList[fleetSel].shipList[shipSel].gradePoints.ToString();
             }
             else
                 return "";
