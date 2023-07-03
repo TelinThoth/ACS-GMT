@@ -111,6 +111,7 @@ namespace Aurora_GM_Tools
 
         private void closeGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            librarian.gameLoaded = false;
             ResetDropdowns();
             librarian.CloseGame();
             DisableDisplay();
@@ -234,6 +235,21 @@ namespace Aurora_GM_Tools
             if (lbx_ships.Items.Count > 0)
                 lbx_ships.SelectedIndex = 0;
 
+            PopulateFleetTraining();
+            PopulateCrewTraining();
+
+            return;
+        }
+
+        private void PopulateFleetTraining()
+        {
+            tbx_CurrentTrain.Text = librarian.GetFleetTraining(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex, cbx_fleet.SelectedIndex, lbx_ships.SelectedIndex);
+            return;
+        }
+
+        private void PopulateCrewTraining()
+        {
+            tbx_CurrentCrew.Text = librarian.GetCrewTraining(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex, cbx_fleet.SelectedIndex, lbx_ships.SelectedIndex);
             return;
         }
 
@@ -288,6 +304,8 @@ namespace Aurora_GM_Tools
         private void cbx_fleet_SelectedIndexChanged(object sender, EventArgs e)
         {
             PopulateMilShipsList();
+            PopulateFleetTraining();
+            PopulateCrewTraining();
             return;
         }
 
@@ -313,6 +331,86 @@ namespace Aurora_GM_Tools
                 MilShipPanel.Enabled = false;
                 MilShipPanel.Location = storageAnchor;
             }
+        }
+
+        private void btn_updateTraining_Click(object sender, EventArgs e)
+        {
+            double adjustedValue;
+            double.TryParse(tbx_Adjustment.Text, out adjustedValue);
+            
+            if (adjustedValue > 0 && adjustedValue <= 500)
+            {
+                librarian.UpdateTrainingGrade(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex, cbx_fleet.SelectedIndex, lbx_ships.SelectedIndex, adjustedValue);
+            }
+            else
+            {
+                MessageBox.Show("The New Value must be a number between 0 and 500.");
+            }
+            
+            PopulateFleetTraining();
+            return;
+        }
+
+        private void lbx_ships_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PopulateFleetTraining();
+            PopulateCrewTraining();
+        }
+
+        private void btn_applyAll_Click(object sender, EventArgs e)
+        {
+            double adjustedValue;
+            double.TryParse(tbx_Adjustment.Text, out adjustedValue);
+
+            if (adjustedValue > 0 && adjustedValue <= 500)
+            {
+                for (int i = 0; i < lbx_ships.Items.Count; i++)
+                    librarian.UpdateTrainingGrade(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex, cbx_fleet.SelectedIndex, i, adjustedValue);
+            }
+            else
+            {
+                MessageBox.Show("The New Value must be a number between 0 and 500.");
+            }
+
+            PopulateFleetTraining();
+            return;
+        }
+
+        private void btn_UpdateCrew_Click(object sender, EventArgs e)
+        {
+            double adjustedValue;
+            double.TryParse(tbx_CrewAjustment.Text, out adjustedValue);
+
+            if (adjustedValue > 0 && adjustedValue <= 10000)
+            {
+                librarian.UpdateCrewGrade(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex, cbx_fleet.SelectedIndex, lbx_ships.SelectedIndex, adjustedValue);
+            }
+            else
+            {
+                MessageBox.Show("The New Value must be a number between 0 and 1000.");
+            }
+
+            PopulateCrewTraining();
+            return;
+        }
+
+        private void btn_CrewAdjustAll_Click(object sender, EventArgs e)
+        {
+            double adjustedValue;
+            double.TryParse(tbx_CrewAjustment.Text, out adjustedValue);
+
+            if (adjustedValue > 0 && adjustedValue <= 10000)
+            {
+                for (int i = 0; i < lbx_ships.Items.Count; i++)
+                    librarian.UpdateCrewGrade(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex, cbx_fleet.SelectedIndex, i, adjustedValue);
+            }
+            else
+            {
+                MessageBox.Show("The New Value must be a number between 0 and 1000.");
+            }
+
+            PopulateCrewTraining();
+            return;
         }
     }
 }

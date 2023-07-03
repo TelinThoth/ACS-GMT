@@ -10,7 +10,6 @@ namespace Aurora_GM_Tools.Classes
     {
         private string fleetName;
         private int fleetID;
-        public int training { get; set; }
         public double[] position { get; set; } // System locations: x, y
         public int systemLoc; // System ID
 

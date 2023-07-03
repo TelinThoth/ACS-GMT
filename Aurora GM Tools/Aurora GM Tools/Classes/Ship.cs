@@ -10,12 +10,13 @@ namespace Aurora_GM_Tools.Classes
     {
         private string shipName;
         private int shipID;
-        private double gradePoints;
 
         private ShipClass shipClass;
 
         public string Ship_Name { get { return shipName; } }
         public int Ship_ID { get { return shipID; } }
+        public double gradePoints { get; set; }
+        public double taskForcePoints { get; set; }
 
         ~ Ship()
         { }
@@ -38,11 +39,13 @@ namespace Aurora_GM_Tools.Classes
             shipClass = null;
         }
 
-        public Ship(string i_name, int i_id, double i_grade, ShipClass i_hullType)
+        public Ship(string i_name, int i_id, double i_grade, double i_points, ShipClass i_hullType)
         {
             shipName = i_name;
             shipID = i_id;
+
             gradePoints = i_grade;
+            taskForcePoints = i_points;
 
             shipClass = i_hullType;
         }
