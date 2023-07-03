@@ -28,6 +28,7 @@ namespace Aurora_GM_Tools.Classes
         {
             
         }
+
         public void ChangeGames(string i_location)
         {
             gamesList.Clear();
@@ -213,12 +214,12 @@ namespace Aurora_GM_Tools.Classes
 
                         foreach (Fleet flt in fact.fleetList)
                         {
-                            getShips.CommandText = "SELECT ShipName, ShipID, GradePoints, ShipClassID FROM FCT_Ship WHERE GameID = " + entry.Game_ID.ToString() + " AND RaceID = " + fact.Faction_ID.ToString() + " AND FleetID = " + flt.Fleet_ID.ToString() + ";";
+                            getShips.CommandText = "SELECT ShipName, ShipID, GradePoints, TFPoints, ShipClassID FROM FCT_Ship WHERE GameID = " + entry.Game_ID.ToString() + " AND RaceID = " + fact.Faction_ID.ToString() + " AND FleetID = " + flt.Fleet_ID.ToString() + ";";
                             using (SQLiteDataReader results = getShips.ExecuteReader())
                             {
                                 while (results.Read())
                                 {
-                                    flt.shipList.Add(new Ship(results.GetString(0), results.GetInt32(1), results.GetDouble(2), shipYard.Find(ele => ele.ShipClass_ID == results.GetInt32(3))));
+                                    flt.shipList.Add(new Ship(results.GetString(0), results.GetInt32(1), results.GetDouble(2), results.GetDouble(3), shipYard.Find(ele => ele.ShipClass_ID == results.GetInt32(4))));
                                 }
                             }
                         }
@@ -227,12 +228,12 @@ namespace Aurora_GM_Tools.Classes
                         {
                             foreach (Fleet shipFlt in shipLine.shippingFleet)
                             {
-                                getShips.CommandText = "SELECT ShipName, ShipID, GradePoints, ShipClassID FROM FCT_Ship WHERE GameID = " + entry.Game_ID.ToString() + " AND RaceID = " + fact.Faction_ID.ToString() + " AND FleetID = " + shipFlt.Fleet_ID.ToString() + ";";
+                                getShips.CommandText = "SELECT ShipName, ShipID, GradePoints, TFPoints, ShipClassID FROM FCT_Ship WHERE GameID = " + entry.Game_ID.ToString() + " AND RaceID = " + fact.Faction_ID.ToString() + " AND FleetID = " + shipFlt.Fleet_ID.ToString() + ";";
                                 using (SQLiteDataReader results = getShips.ExecuteReader())
                                 {
                                     while (results.Read())
                                     {
-                                        shipFlt.shipList.Add(new Ship(results.GetString(0), results.GetInt32(1), results.GetDouble(2), shipYard.Find(ele => ele.ShipClass_ID == results.GetInt32(3))));
+                                        shipFlt.shipList.Add(new Ship(results.GetString(0), results.GetInt32(1), results.GetDouble(2), results.GetDouble(3), shipYard.Find(ele => ele.ShipClass_ID == results.GetInt32(4))));
                                     }
                                 }
                             }
@@ -244,7 +245,7 @@ namespace Aurora_GM_Tools.Classes
             return;
         }
 
-        void PopulateInternalColonies()
+        private void PopulateInternalColonies()
         {
             uplink.Open();
 
@@ -340,6 +341,35 @@ namespace Aurora_GM_Tools.Classes
             }
         }
 
+        public bool UpdateTrainingGrade(int gameSel, int factSel, int fleetSel, int shipSel, double val)
+        {
+            if (gameSel > -1 && factSel > -1 && fleetSel > -1 && fleetSel > -1 && val > -1)
+            {
+                string command = "UPDATE FCT_Ship SET TFPoints = " + val.ToString() + 
+                                 " WHERE GameID = " + gamesList[gameSel].Game_ID.ToString() + 
+                                 " AND RaceID = " + gamesList[gameSel].factionsList[factSel].Faction_ID.ToString() + 
+                                 " AND FleetID = " + gamesList[gameSel].factionsList[factSel].fleetList[fleetSel].Fleet_ID.ToString() + 
+                                 " AND ShipID = " + gamesList[gameSel].factionsList[factSel].fleetList[fleetSel].shipList[shipSel].Ship_ID.ToString() + ";";
+                uplink.Open();
+
+                using(SQLiteCommand upgradeTraining = new SQLiteCommand(uplink))
+                {
+                    upgradeTraining.CommandText = command;
+                    upgradeTraining.ExecuteNonQuery();
+                }
+
+                uplink.Close();
+
+                gamesList[gameSel].factionsList[factSel].fleetList[fleetSel].shipList[shipSel].taskForcePoints = val;
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public string[] GetGamesList()
         {
             return gamesList.Select(item => item.Game_Name).ToArray();
@@ -424,6 +454,16 @@ namespace Aurora_GM_Tools.Classes
                 return gamesList[gameSel].factionsList[factSel].fleetList[fleetSel].shipList.Select(item => item.Ship_Name).ToArray();
             else
                 return rv_none;
+        }
+
+        public string GetFleetTraining(int gameSel, int factSel, int fleetSel, int shipSel)
+        {
+            if (gameSel > -1 && factSel > -1 && fleetSel > -1 && shipSel > -1)
+            {
+                return gamesList[gameSel].factionsList[factSel].fleetList[fleetSel].shipList[shipSel].taskForcePoints.ToString();
+            }
+            else
+                return "";
         }
 
         public void CloseGame()
