@@ -85,14 +85,12 @@ namespace Aurora_GM_Tools
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1252, 36);
+            this.menuStrip1.Size = new System.Drawing.Size(1252, 33);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -263,9 +261,9 @@ namespace Aurora_GM_Tools
             this.lbl_TrainingGrade.AutoSize = true;
             this.lbl_TrainingGrade.Location = new System.Drawing.Point(414, 78);
             this.lbl_TrainingGrade.Name = "lbl_TrainingGrade";
-            this.lbl_TrainingGrade.Size = new System.Drawing.Size(175, 29);
+            this.lbl_TrainingGrade.Size = new System.Drawing.Size(236, 29);
             this.lbl_TrainingGrade.TabIndex = 13;
-            this.lbl_TrainingGrade.Text = "Training Grade";
+            this.lbl_TrainingGrade.Text = "Fleet Training Grade";
             // 
             // lbl_Waypoints
             // 
@@ -559,9 +557,9 @@ namespace Aurora_GM_Tools
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(414, 434);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(165, 29);
+            this.label6.Size = new System.Drawing.Size(220, 29);
             this.label6.TabIndex = 20;
-            this.label6.Text = "Crew Training";
+            this.label6.Text = "Ship Crew Training";
             // 
             // tbx_CrewAjustment
             // 
