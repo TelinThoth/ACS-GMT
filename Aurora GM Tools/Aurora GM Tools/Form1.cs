@@ -148,12 +148,20 @@ namespace Aurora_GM_Tools
 
         private void PopulateFactionDropdown()
         {
+            string[] factionHolder = librarian.GetFactionList(cbx_gamesList.SelectedIndex);
+            
             cbx_faction.Items.Clear();
+            cbx_faction.Items.AddRange(factionHolder);
 
-            cbx_faction.Items.AddRange(librarian.GetFactionList(cbx_gamesList.SelectedIndex));
+            cbx_newOwner.Items.Clear();
+            cbx_newOwner.Items.AddRange(factionHolder);
 
             if (cbx_faction.Items.Count > 0)
                 cbx_faction.SelectedIndex = 0;
+
+            if (cbx_newOwner.Items.Count > 0)
+                cbx_newOwner.SelectedIndex = 0;
+
 
             tbctl_SelectionOptions.Visible = true;
             tbctl_SelectionOptions.Enabled = true;
@@ -399,18 +407,24 @@ namespace Aurora_GM_Tools
             double adjustedValue;
             double.TryParse(tbx_CrewAjustment.Text, out adjustedValue);
 
-            if (adjustedValue > 0 && adjustedValue <= 10000)
+            if (adjustedValue > 0)
             {
                 for (int i = 0; i < lbx_ships.Items.Count; i++)
                     librarian.UpdateCrewGrade(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex, cbx_fleet.SelectedIndex, i, adjustedValue);
             }
             else
             {
-                MessageBox.Show("The New Value must be a number between 0 and 1000.");
+                MessageBox.Show("The New Value must be a number above 0.");
             }
 
             PopulateCrewTraining();
             return;
+        }
+
+        private void btn_TransferOwners_Click(object sender, EventArgs e)
+        {
+            librarian.TransferMilFleet(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex, cbx_fleet.SelectedIndex, cbx_newOwner.SelectedIndex);
+            PopulateFleetDropdown();
         }
     }
 }

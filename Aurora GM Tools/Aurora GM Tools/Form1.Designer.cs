@@ -41,12 +41,6 @@ namespace Aurora_GM_Tools
             this.GameControlsPanel = new System.Windows.Forms.Panel();
             this.tbctl_SelectionOptions = new System.Windows.Forms.TabControl();
             this.tab_fleets = new System.Windows.Forms.TabPage();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btn_updateTraining = new System.Windows.Forms.Button();
-            this.tbx_CurrentTrain = new System.Windows.Forms.TextBox();
-            this.tbx_Adjustment = new System.Windows.Forms.TextBox();
-            this.lbl_TrainingGrade = new System.Windows.Forms.Label();
             this.lbl_Waypoints = new System.Windows.Forms.Label();
             this.cbx_fleet = new System.Windows.Forms.ComboBox();
             this.cbx_waypoints = new System.Windows.Forms.ComboBox();
@@ -63,10 +57,14 @@ namespace Aurora_GM_Tools
             this.label1 = new System.Windows.Forms.Label();
             this.cbx_faction = new System.Windows.Forms.ComboBox();
             this.lbl_Faction = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btn_updateTraining = new System.Windows.Forms.Button();
+            this.tbx_CurrentTrain = new System.Windows.Forms.TextBox();
+            this.tbx_Adjustment = new System.Windows.Forms.TextBox();
+            this.lbl_TrainingGrade = new System.Windows.Forms.Label();
             this.lbx_ships = new System.Windows.Forms.ListBox();
             this.MilShipPanel = new System.Windows.Forms.Panel();
-            this.lbl_MilShips = new System.Windows.Forms.Label();
-            this.btn_applyAll = new System.Windows.Forms.Button();
             this.btn_CrewAdjustAll = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -74,6 +72,11 @@ namespace Aurora_GM_Tools
             this.tbx_CurrentCrew = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tbx_CrewAjustment = new System.Windows.Forms.TextBox();
+            this.btn_applyAll = new System.Windows.Forms.Button();
+            this.lbl_MilShips = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cbx_newOwner = new System.Windows.Forms.ComboBox();
+            this.btn_TransferOwners = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.GameControlsPanel.SuspendLayout();
             this.tbctl_SelectionOptions.SuspendLayout();
@@ -85,12 +88,13 @@ namespace Aurora_GM_Tools
             // 
             // menuStrip1
             // 
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1252, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(1252, 36);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -194,8 +198,11 @@ namespace Aurora_GM_Tools
             // tab_fleets
             // 
             this.tab_fleets.BackColor = System.Drawing.Color.MediumBlue;
+            this.tab_fleets.Controls.Add(this.label7);
             this.tab_fleets.Controls.Add(this.lbl_Waypoints);
+            this.tab_fleets.Controls.Add(this.cbx_newOwner);
             this.tab_fleets.Controls.Add(this.cbx_fleet);
+            this.tab_fleets.Controls.Add(this.btn_TransferOwners);
             this.tab_fleets.Controls.Add(this.cbx_waypoints);
             this.tab_fleets.Controls.Add(this.lbl_fleet);
             this.tab_fleets.Controls.Add(this.btn_teleportFleet);
@@ -204,66 +211,10 @@ namespace Aurora_GM_Tools
             this.tab_fleets.ForeColor = System.Drawing.Color.Lime;
             this.tab_fleets.Location = new System.Drawing.Point(4, 38);
             this.tab_fleets.Name = "tab_fleets";
-            this.tab_fleets.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tab_fleets.Padding = new System.Windows.Forms.Padding(3);
             this.tab_fleets.Size = new System.Drawing.Size(388, 483);
             this.tab_fleets.TabIndex = 0;
             this.tab_fleets.Text = "Mil. Fleets";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(608, 160);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(127, 29);
-            this.label3.TabIndex = 18;
-            this.label3.Text = "New Level";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(453, 160);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 29);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "Current";
-            // 
-            // btn_updateTraining
-            // 
-            this.btn_updateTraining.BackColor = System.Drawing.Color.DarkBlue;
-            this.btn_updateTraining.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btn_updateTraining.Location = new System.Drawing.Point(420, 194);
-            this.btn_updateTraining.Name = "btn_updateTraining";
-            this.btn_updateTraining.Size = new System.Drawing.Size(327, 42);
-            this.btn_updateTraining.TabIndex = 16;
-            this.btn_updateTraining.Text = "Upgrade Single";
-            this.btn_updateTraining.UseVisualStyleBackColor = false;
-            this.btn_updateTraining.Click += new System.EventHandler(this.btn_updateTraining_Click);
-            // 
-            // tbx_CurrentTrain
-            // 
-            this.tbx_CurrentTrain.BackColor = System.Drawing.SystemColors.Control;
-            this.tbx_CurrentTrain.Cursor = System.Windows.Forms.Cursors.No;
-            this.tbx_CurrentTrain.Location = new System.Drawing.Point(420, 121);
-            this.tbx_CurrentTrain.Name = "tbx_CurrentTrain";
-            this.tbx_CurrentTrain.ReadOnly = true;
-            this.tbx_CurrentTrain.Size = new System.Drawing.Size(152, 35);
-            this.tbx_CurrentTrain.TabIndex = 15;
-            // 
-            // tbx_Adjustment
-            // 
-            this.tbx_Adjustment.Location = new System.Drawing.Point(597, 121);
-            this.tbx_Adjustment.Name = "tbx_Adjustment";
-            this.tbx_Adjustment.Size = new System.Drawing.Size(150, 35);
-            this.tbx_Adjustment.TabIndex = 14;
-            // 
-            // lbl_TrainingGrade
-            // 
-            this.lbl_TrainingGrade.AutoSize = true;
-            this.lbl_TrainingGrade.Location = new System.Drawing.Point(414, 78);
-            this.lbl_TrainingGrade.Name = "lbl_TrainingGrade";
-            this.lbl_TrainingGrade.Size = new System.Drawing.Size(236, 29);
-            this.lbl_TrainingGrade.TabIndex = 13;
-            this.lbl_TrainingGrade.Text = "Fleet Training Grade";
             // 
             // lbl_Waypoints
             // 
@@ -336,7 +287,7 @@ namespace Aurora_GM_Tools
             this.tab_CivFleets.ForeColor = System.Drawing.Color.Lime;
             this.tab_CivFleets.Location = new System.Drawing.Point(4, 38);
             this.tab_CivFleets.Name = "tab_CivFleets";
-            this.tab_CivFleets.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tab_CivFleets.Padding = new System.Windows.Forms.Padding(3);
             this.tab_CivFleets.Size = new System.Drawing.Size(388, 483);
             this.tab_CivFleets.TabIndex = 2;
             this.tab_CivFleets.Text = "Civ. Fleets";
@@ -392,7 +343,7 @@ namespace Aurora_GM_Tools
             this.tab_Colonies.ForeColor = System.Drawing.Color.Lime;
             this.tab_Colonies.Location = new System.Drawing.Point(4, 38);
             this.tab_Colonies.Name = "tab_Colonies";
-            this.tab_Colonies.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tab_Colonies.Padding = new System.Windows.Forms.Padding(3);
             this.tab_Colonies.Size = new System.Drawing.Size(388, 483);
             this.tab_Colonies.TabIndex = 1;
             this.tab_Colonies.Text = "Colonies";
@@ -440,6 +391,62 @@ namespace Aurora_GM_Tools
             this.lbl_Faction.TabIndex = 4;
             this.lbl_Faction.Text = "Faction:";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(608, 160);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(127, 29);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "New Level";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(453, 160);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(92, 29);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Current";
+            // 
+            // btn_updateTraining
+            // 
+            this.btn_updateTraining.BackColor = System.Drawing.Color.DarkBlue;
+            this.btn_updateTraining.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn_updateTraining.Location = new System.Drawing.Point(420, 194);
+            this.btn_updateTraining.Name = "btn_updateTraining";
+            this.btn_updateTraining.Size = new System.Drawing.Size(327, 42);
+            this.btn_updateTraining.TabIndex = 16;
+            this.btn_updateTraining.Text = "Upgrade Single";
+            this.btn_updateTraining.UseVisualStyleBackColor = false;
+            this.btn_updateTraining.Click += new System.EventHandler(this.btn_updateTraining_Click);
+            // 
+            // tbx_CurrentTrain
+            // 
+            this.tbx_CurrentTrain.BackColor = System.Drawing.SystemColors.Control;
+            this.tbx_CurrentTrain.Cursor = System.Windows.Forms.Cursors.No;
+            this.tbx_CurrentTrain.Location = new System.Drawing.Point(420, 121);
+            this.tbx_CurrentTrain.Name = "tbx_CurrentTrain";
+            this.tbx_CurrentTrain.ReadOnly = true;
+            this.tbx_CurrentTrain.Size = new System.Drawing.Size(152, 35);
+            this.tbx_CurrentTrain.TabIndex = 15;
+            // 
+            // tbx_Adjustment
+            // 
+            this.tbx_Adjustment.Location = new System.Drawing.Point(597, 121);
+            this.tbx_Adjustment.Name = "tbx_Adjustment";
+            this.tbx_Adjustment.Size = new System.Drawing.Size(150, 35);
+            this.tbx_Adjustment.TabIndex = 14;
+            // 
+            // lbl_TrainingGrade
+            // 
+            this.lbl_TrainingGrade.AutoSize = true;
+            this.lbl_TrainingGrade.Location = new System.Drawing.Point(414, 78);
+            this.lbl_TrainingGrade.Name = "lbl_TrainingGrade";
+            this.lbl_TrainingGrade.Size = new System.Drawing.Size(236, 29);
+            this.lbl_TrainingGrade.TabIndex = 13;
+            this.lbl_TrainingGrade.Text = "Fleet Training Grade";
+            // 
             // lbx_ships
             // 
             this.lbx_ships.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -477,29 +484,6 @@ namespace Aurora_GM_Tools
             this.MilShipPanel.Size = new System.Drawing.Size(794, 985);
             this.MilShipPanel.TabIndex = 4;
             this.MilShipPanel.Visible = false;
-            // 
-            // lbl_MilShips
-            // 
-            this.lbl_MilShips.AutoSize = true;
-            this.lbl_MilShips.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lbl_MilShips.ForeColor = System.Drawing.Color.Lime;
-            this.lbl_MilShips.Location = new System.Drawing.Point(20, 53);
-            this.lbl_MilShips.Name = "lbl_MilShips";
-            this.lbl_MilShips.Size = new System.Drawing.Size(162, 29);
-            this.lbl_MilShips.TabIndex = 6;
-            this.lbl_MilShips.Text = "Military Ships:";
-            // 
-            // btn_applyAll
-            // 
-            this.btn_applyAll.BackColor = System.Drawing.Color.DarkBlue;
-            this.btn_applyAll.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btn_applyAll.Location = new System.Drawing.Point(420, 242);
-            this.btn_applyAll.Name = "btn_applyAll";
-            this.btn_applyAll.Size = new System.Drawing.Size(327, 42);
-            this.btn_applyAll.TabIndex = 19;
-            this.btn_applyAll.Text = "Apply To All";
-            this.btn_applyAll.UseVisualStyleBackColor = false;
-            this.btn_applyAll.Click += new System.EventHandler(this.btn_applyAll_Click);
             // 
             // btn_CrewAdjustAll
             // 
@@ -567,6 +551,59 @@ namespace Aurora_GM_Tools
             this.tbx_CrewAjustment.Name = "tbx_CrewAjustment";
             this.tbx_CrewAjustment.Size = new System.Drawing.Size(150, 35);
             this.tbx_CrewAjustment.TabIndex = 21;
+            // 
+            // btn_applyAll
+            // 
+            this.btn_applyAll.BackColor = System.Drawing.Color.DarkBlue;
+            this.btn_applyAll.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn_applyAll.Location = new System.Drawing.Point(420, 242);
+            this.btn_applyAll.Name = "btn_applyAll";
+            this.btn_applyAll.Size = new System.Drawing.Size(327, 42);
+            this.btn_applyAll.TabIndex = 19;
+            this.btn_applyAll.Text = "Apply To All";
+            this.btn_applyAll.UseVisualStyleBackColor = false;
+            this.btn_applyAll.Click += new System.EventHandler(this.btn_applyAll_Click);
+            // 
+            // lbl_MilShips
+            // 
+            this.lbl_MilShips.AutoSize = true;
+            this.lbl_MilShips.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lbl_MilShips.ForeColor = System.Drawing.Color.Lime;
+            this.lbl_MilShips.Location = new System.Drawing.Point(20, 53);
+            this.lbl_MilShips.Name = "lbl_MilShips";
+            this.lbl_MilShips.Size = new System.Drawing.Size(162, 29);
+            this.lbl_MilShips.TabIndex = 6;
+            this.lbl_MilShips.Text = "Military Ships:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(36, 322);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(175, 29);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Target Faction:";
+            // 
+            // cbx_newOwner
+            // 
+            this.cbx_newOwner.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_newOwner.FormattingEnabled = true;
+            this.cbx_newOwner.Location = new System.Drawing.Point(40, 355);
+            this.cbx_newOwner.Name = "cbx_newOwner";
+            this.cbx_newOwner.Size = new System.Drawing.Size(328, 37);
+            this.cbx_newOwner.TabIndex = 13;
+            // 
+            // btn_TransferOwners
+            // 
+            this.btn_TransferOwners.BackColor = System.Drawing.Color.DarkBlue;
+            this.btn_TransferOwners.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn_TransferOwners.Location = new System.Drawing.Point(74, 398);
+            this.btn_TransferOwners.Name = "btn_TransferOwners";
+            this.btn_TransferOwners.Size = new System.Drawing.Size(254, 42);
+            this.btn_TransferOwners.TabIndex = 12;
+            this.btn_TransferOwners.Text = "Transfer Ownership";
+            this.btn_TransferOwners.UseVisualStyleBackColor = false;
+            this.btn_TransferOwners.Click += new System.EventHandler(this.btn_TransferOwners_Click);
             // 
             // Form1
             // 
@@ -645,6 +682,9 @@ namespace Aurora_GM_Tools
         private System.Windows.Forms.TextBox tbx_CurrentCrew;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tbx_CrewAjustment;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cbx_newOwner;
+        private System.Windows.Forms.Button btn_TransferOwners;
     }
 }
 
