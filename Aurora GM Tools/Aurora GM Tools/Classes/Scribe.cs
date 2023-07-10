@@ -57,6 +57,7 @@ namespace Aurora_GM_Tools.Classes
                 PopulateInternalShips();
                 PopulateInternalColonies();
                 PopulateInternalWaypoints();
+                PopulateInternalArmies();
                 gameLoaded = true;
             }
             else
@@ -94,6 +95,7 @@ namespace Aurora_GM_Tools.Classes
                 PopulateInternalShips();
                 PopulateInternalColonies();
                 PopulateInternalWaypoints();
+                PopulateInternalArmies();
                 gameLoaded = true;
             }
             else
@@ -315,6 +317,38 @@ namespace Aurora_GM_Tools.Classes
             return;
         }
 
+        private void PopulateInternalArmies()
+        {
+            uplink.Open();
+
+            string command;
+
+            using (SQLiteCommand getArmies = new SQLiteCommand(uplink))
+            {
+                foreach (Game entry in gamesList)
+                {
+                    foreach (Faction fact in entry.factionsList)
+                    {
+                        foreach (Colony cols in fact.coloniesList)
+                        {
+                            command = "SELECT FormationID, Name, PopulationID, ShipID, ParentFormationID FROM FCT_GroundUnitFormation WHERE PopulationID = " + cols.Col_ID;
+                            getArmies.CommandText = command;
+                            using (SQLiteDataReader results = getArmies.ExecuteReader())
+                            {
+                                while (results.Read())
+                                {
+                                    cols.groundForces.Add(new Army(results.GetInt32(0), results.GetString(1), results.GetInt32(2), results.GetInt32(3), results.GetInt32(4)));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            uplink.Close();
+            return;
+        }
+
         public bool TeleportFleet(int gameSel, int factSel, int fleetSel, int waypointSel)
         {
             if (gameSel > -1 && factSel > -1 && fleetSel > -1 && waypointSel > -1)
@@ -396,7 +430,7 @@ namespace Aurora_GM_Tools.Classes
 
         public bool UpdateCrewGrade(int gameSel, int factSel, int fleetSel, int shipSel, double val)
         {
-            if (gameSel > -1 && factSel > -1 && fleetSel > -1 && fleetSel > -1 && val > -1)
+            if (gameSel > -1 && factSel > -1 && fleetSel > -1 && shipSel > -1 && val > -1)
             {
                 string command = "UPDATE FCT_Ship SET GradePoints = " + val.ToString() +
                                  " WHERE ShipID = " + gamesList[gameSel].factionsList[factSel].fleetList[fleetSel].shipList[shipSel].Ship_ID.ToString() + ";";
@@ -411,6 +445,34 @@ namespace Aurora_GM_Tools.Classes
                 uplink.Close();
 
                 gamesList[gameSel].factionsList[factSel].fleetList[fleetSel].shipList[shipSel].gradePoints = val;
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool TransferArmy(int gameSel, int factSel, int colSel, int armSel, int val)
+        {
+            if (gameSel > -1 && factSel > -1 && colSel > -1 && armSel > -1 && val > -1)
+            {
+                string command = "UPDATE FCT_GroundUnitFormation SET RaceID = " + val.ToString() +
+                                 " WHERE FormationID = " + gamesList[gameSel].factionsList[factSel].coloniesList[colSel].groundForces[armSel].armyID.ToString() + ";";
+                uplink.Open();
+
+                using (SQLiteCommand transferArmy = new SQLiteCommand(uplink))
+                {
+                    transferArmy.CommandText = command;
+                    transferArmy.ExecuteNonQuery();
+                }
+
+                uplink.Close();
+
+                Army transfer = gamesList[gameSel].factionsList[factSel].coloniesList[colSel].groundForces[armSel];
+                gamesList[gameSel].factionsList[factSel].coloniesList[colSel].groundForces.Remove(transfer);
+                gamesList[gameSel].factionsList[factSel].coloniesList[colSel].groundForces.Add(transfer);
 
                 return true;
             }
@@ -484,6 +546,15 @@ namespace Aurora_GM_Tools.Classes
             string[] rv_none = { "None" };
             if (gameSel > -1 && factSel > -1 && colSel > -1)
                 return gamesList[gameSel].factionsList[factSel].coloniesList[colSel].missileStock.Select(item => item.misAmount.ToString()).ToArray();
+            else
+                return rv_none;
+        }
+
+        public string[] GetArmies(int gameSel, int factSel, int colSel)
+        {
+            string[] rv_none = { "None" };
+            if (gameSel > -1 && factSel > -1 && colSel > -1)
+                return gamesList[gameSel].factionsList[factSel].coloniesList[colSel].groundForces.Select(item => item.armyName.ToString()).ToArray();
             else
                 return rv_none;
         }

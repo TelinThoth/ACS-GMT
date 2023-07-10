@@ -156,11 +156,17 @@ namespace Aurora_GM_Tools
             cbx_newOwner.Items.Clear();
             cbx_newOwner.Items.AddRange(factionHolder);
 
+            cbx_newArmyOwner.Items.Clear();
+            cbx_newArmyOwner.Items.AddRange(factionHolder);
+
             if (cbx_faction.Items.Count > 0)
                 cbx_faction.SelectedIndex = 0;
 
             if (cbx_newOwner.Items.Count > 0)
                 cbx_newOwner.SelectedIndex = 0;
+
+            if (cbx_newArmyOwner.Items.Count > 0)
+                cbx_newArmyOwner.SelectedIndex = 0;
 
 
             tbctl_SelectionOptions.Visible = true;
@@ -218,6 +224,19 @@ namespace Aurora_GM_Tools
 
             if (cbx_colonies.Items.Count > 0)
                 cbx_colonies.SelectedIndex = 0;
+
+            PopulateArmiesDropdown();
+            return;
+        }
+
+        private void PopulateArmiesDropdown()
+        {
+            cbx_Army.Items.Clear();
+
+            cbx_Army.Items.AddRange(librarian.GetArmies(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex, cbx_colonies.SelectedIndex));
+
+            if (cbx_Army.Items.Count > 0)
+                cbx_Army.SelectedIndex = 0;
 
             return;
         }
@@ -284,6 +303,9 @@ namespace Aurora_GM_Tools
             cbx_waypoints.SelectedIndex = -1;
             cbx_waypoints.Items.Clear();
 
+            cbx_Army.SelectedIndex = -1;
+            cbx_Army.Items.Clear();
+
             return;
         }
 
@@ -315,6 +337,11 @@ namespace Aurora_GM_Tools
             PopulateFleetTraining();
             PopulateCrewTraining();
             return;
+        }
+
+        private void cbx_colonies_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PopulateArmiesDropdown();
         }
 
         private void btn_teleportFleet_Click(object sender, EventArgs e)
@@ -425,6 +452,12 @@ namespace Aurora_GM_Tools
         {
             librarian.TransferMilFleet(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex, cbx_fleet.SelectedIndex, cbx_newOwner.SelectedIndex);
             PopulateFleetDropdown();
+        }
+
+        private void btn_transferArmyOwner_Click(object sender, EventArgs e)
+        {
+            librarian.TransferArmy(cbx_gamesList.SelectedIndex, cbx_faction.SelectedIndex, cbx_colonies.SelectedIndex, cbx_Army.SelectedIndex, cbx_newArmyOwner.SelectedIndex);
+            PopulateArmiesDropdown();
         }
     }
 }

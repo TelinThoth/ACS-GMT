@@ -16,11 +16,13 @@ namespace Aurora_GM_Tools.Classes
 
         public List<Component> componentStock;
         public List<Missile> missileStock;
+        public List<Army> groundForces;
 
         public Colony()
         {
             componentStock = new List<Component>();
             missileStock = new List<Missile>();
+            groundForces = new List<Army>();
 
             colName = "Default";
             colID = -1;
@@ -33,6 +35,7 @@ namespace Aurora_GM_Tools.Classes
 
             componentStock = new List<Component>();
             missileStock = new List<Missile>();
+            groundForces = new List<Army>();
         }
     }
 }

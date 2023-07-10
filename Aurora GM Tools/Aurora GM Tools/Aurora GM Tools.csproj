@@ -85,6 +85,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Army.cs" />
     <Compile Include="Classes\Colony.cs" />
     <Compile Include="Classes\Component.cs" />
     <Compile Include="Classes\Faction.cs" />

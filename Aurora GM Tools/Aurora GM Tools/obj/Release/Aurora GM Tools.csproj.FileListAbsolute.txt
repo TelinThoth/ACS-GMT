@@ -1,0 +1,32 @@
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\x86\sqlite3.dll
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\x64\sqlite3.dll
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\Aurora GM Tools.exe.config
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\Aurora GM Tools.exe
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\Aurora GM Tools.pdb
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\EntityFramework.dll
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\EntityFramework.SqlServer.dll
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\Microsoft.Data.Sqlite.dll
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\SQLitePCLRaw.core.dll
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\System.Buffers.dll
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\System.Data.SQLite.dll
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\System.Data.SQLite.EF6.dll
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\System.Data.SQLite.Linq.dll
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\System.Memory.dll
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\System.Numerics.Vectors.dll
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\System.Runtime.CompilerServices.Unsafe.dll
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\EntityFramework.xml
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\EntityFramework.SqlServer.xml
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\Microsoft.Data.Sqlite.xml
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\System.Buffers.xml
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\System.Data.SQLite.xml
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\System.Memory.xml
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\System.Numerics.Vectors.xml
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\bin\Release\System.Runtime.CompilerServices.Unsafe.xml
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\obj\Release\Aurora GM Tools.csproj.AssemblyReference.cache
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\obj\Release\Aurora_GM_Tools.Form1.resources
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\obj\Release\Aurora_GM_Tools.Properties.Resources.resources
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\obj\Release\Aurora GM Tools.csproj.GenerateResource.cache
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\obj\Release\Aurora GM Tools.csproj.CoreCompileInputs.cache
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\obj\Release\Aurora GM Tools.csproj.CopyComplete
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\obj\Release\Aurora GM Tools.exe
+D:\Aurora GM Tools\ACS-GMT\Aurora GM Tools\Aurora GM Tools\obj\Release\Aurora GM Tools.pdb
