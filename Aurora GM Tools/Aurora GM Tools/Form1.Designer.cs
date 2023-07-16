@@ -82,6 +82,7 @@ namespace Aurora_GM_Tools
             this.tbx_CrewAjustment = new System.Windows.Forms.TextBox();
             this.btn_applyAll = new System.Windows.Forms.Button();
             this.lbl_MilShips = new System.Windows.Forms.Label();
+            this.tab_groundForces = new System.Windows.Forms.TabPage();
             this.menuStrip1.SuspendLayout();
             this.GameControlsPanel.SuspendLayout();
             this.tbctl_SelectionOptions.SuspendLayout();
@@ -89,6 +90,7 @@ namespace Aurora_GM_Tools
             this.tab_CivFleets.SuspendLayout();
             this.tab_Colonies.SuspendLayout();
             this.MilShipPanel.SuspendLayout();
+            this.tab_groundForces.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -99,7 +101,7 @@ namespace Aurora_GM_Tools
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1236, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(1356, 33);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -157,7 +159,7 @@ namespace Aurora_GM_Tools
             this.cbx_gamesList.FormattingEnabled = true;
             this.cbx_gamesList.Location = new System.Drawing.Point(106, 12);
             this.cbx_gamesList.Name = "cbx_gamesList";
-            this.cbx_gamesList.Size = new System.Drawing.Size(256, 37);
+            this.cbx_gamesList.Size = new System.Drawing.Size(398, 37);
             this.cbx_gamesList.TabIndex = 1;
             this.cbx_gamesList.SelectedIndexChanged += new System.EventHandler(this.cbx_gamesList_SelectedIndexChanged);
             // 
@@ -182,7 +184,7 @@ namespace Aurora_GM_Tools
             this.GameControlsPanel.ForeColor = System.Drawing.Color.Lime;
             this.GameControlsPanel.Location = new System.Drawing.Point(10, 55);
             this.GameControlsPanel.Name = "GameControlsPanel";
-            this.GameControlsPanel.Size = new System.Drawing.Size(429, 985);
+            this.GameControlsPanel.Size = new System.Drawing.Size(550, 985);
             this.GameControlsPanel.TabIndex = 3;
             // 
             // tbctl_SelectionOptions
@@ -190,12 +192,13 @@ namespace Aurora_GM_Tools
             this.tbctl_SelectionOptions.Controls.Add(this.tab_fleets);
             this.tbctl_SelectionOptions.Controls.Add(this.tab_CivFleets);
             this.tbctl_SelectionOptions.Controls.Add(this.tab_Colonies);
+            this.tbctl_SelectionOptions.Controls.Add(this.tab_groundForces);
             this.tbctl_SelectionOptions.Enabled = false;
             this.tbctl_SelectionOptions.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbctl_SelectionOptions.Location = new System.Drawing.Point(8, 114);
             this.tbctl_SelectionOptions.Name = "tbctl_SelectionOptions";
             this.tbctl_SelectionOptions.SelectedIndex = 0;
-            this.tbctl_SelectionOptions.Size = new System.Drawing.Size(380, 525);
+            this.tbctl_SelectionOptions.Size = new System.Drawing.Size(516, 525);
             this.tbctl_SelectionOptions.TabIndex = 4;
             this.tbctl_SelectionOptions.Visible = false;
             this.tbctl_SelectionOptions.SelectedIndexChanged += new System.EventHandler(this.tbctl_SelectionOptions_SelectedIndexChanged);
@@ -217,7 +220,7 @@ namespace Aurora_GM_Tools
             this.tab_fleets.Location = new System.Drawing.Point(4, 38);
             this.tab_fleets.Name = "tab_fleets";
             this.tab_fleets.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_fleets.Size = new System.Drawing.Size(372, 483);
+            this.tab_fleets.Size = new System.Drawing.Size(508, 483);
             this.tab_fleets.TabIndex = 0;
             this.tab_fleets.Text = "Mil. Fleets";
             // 
@@ -245,7 +248,7 @@ namespace Aurora_GM_Tools
             this.cbx_newOwner.FormattingEnabled = true;
             this.cbx_newOwner.Location = new System.Drawing.Point(40, 355);
             this.cbx_newOwner.Name = "cbx_newOwner";
-            this.cbx_newOwner.Size = new System.Drawing.Size(310, 37);
+            this.cbx_newOwner.Size = new System.Drawing.Size(452, 37);
             this.cbx_newOwner.TabIndex = 13;
             // 
             // cbx_fleet
@@ -255,7 +258,7 @@ namespace Aurora_GM_Tools
             this.cbx_fleet.FormattingEnabled = true;
             this.cbx_fleet.Location = new System.Drawing.Point(14, 42);
             this.cbx_fleet.Name = "cbx_fleet";
-            this.cbx_fleet.Size = new System.Drawing.Size(336, 37);
+            this.cbx_fleet.Size = new System.Drawing.Size(478, 37);
             this.cbx_fleet.TabIndex = 5;
             this.cbx_fleet.SelectedIndexChanged += new System.EventHandler(this.cbx_fleet_SelectedIndexChanged);
             // 
@@ -263,7 +266,7 @@ namespace Aurora_GM_Tools
             // 
             this.btn_TransferOwners.BackColor = System.Drawing.Color.DarkBlue;
             this.btn_TransferOwners.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btn_TransferOwners.Location = new System.Drawing.Point(41, 398);
+            this.btn_TransferOwners.Location = new System.Drawing.Point(94, 398);
             this.btn_TransferOwners.Name = "btn_TransferOwners";
             this.btn_TransferOwners.Size = new System.Drawing.Size(309, 42);
             this.btn_TransferOwners.TabIndex = 12;
@@ -277,7 +280,7 @@ namespace Aurora_GM_Tools
             this.cbx_waypoints.FormattingEnabled = true;
             this.cbx_waypoints.Location = new System.Drawing.Point(40, 185);
             this.cbx_waypoints.Name = "cbx_waypoints";
-            this.cbx_waypoints.Size = new System.Drawing.Size(310, 37);
+            this.cbx_waypoints.Size = new System.Drawing.Size(452, 37);
             this.cbx_waypoints.TabIndex = 10;
             // 
             // lbl_fleet
@@ -295,7 +298,7 @@ namespace Aurora_GM_Tools
             // 
             this.btn_teleportFleet.BackColor = System.Drawing.Color.DarkBlue;
             this.btn_teleportFleet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btn_teleportFleet.Location = new System.Drawing.Point(41, 228);
+            this.btn_teleportFleet.Location = new System.Drawing.Point(94, 228);
             this.btn_teleportFleet.Name = "btn_teleportFleet";
             this.btn_teleportFleet.Size = new System.Drawing.Size(309, 42);
             this.btn_teleportFleet.TabIndex = 7;
@@ -323,7 +326,7 @@ namespace Aurora_GM_Tools
             this.tab_CivFleets.Location = new System.Drawing.Point(4, 38);
             this.tab_CivFleets.Name = "tab_CivFleets";
             this.tab_CivFleets.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_CivFleets.Size = new System.Drawing.Size(372, 483);
+            this.tab_CivFleets.Size = new System.Drawing.Size(508, 483);
             this.tab_CivFleets.TabIndex = 2;
             this.tab_CivFleets.Text = "Civ. Fleets";
             // 
@@ -334,7 +337,7 @@ namespace Aurora_GM_Tools
             this.cbx_shippingFleets.FormattingEnabled = true;
             this.cbx_shippingFleets.Location = new System.Drawing.Point(8, 118);
             this.cbx_shippingFleets.Name = "cbx_shippingFleets";
-            this.cbx_shippingFleets.Size = new System.Drawing.Size(342, 37);
+            this.cbx_shippingFleets.Size = new System.Drawing.Size(484, 37);
             this.cbx_shippingFleets.TabIndex = 10;
             // 
             // lbl_shippingLines
@@ -355,7 +358,7 @@ namespace Aurora_GM_Tools
             this.cbx_shippingLines.FormattingEnabled = true;
             this.cbx_shippingLines.Location = new System.Drawing.Point(8, 35);
             this.cbx_shippingLines.Name = "cbx_shippingLines";
-            this.cbx_shippingLines.Size = new System.Drawing.Size(342, 37);
+            this.cbx_shippingLines.Size = new System.Drawing.Size(484, 37);
             this.cbx_shippingLines.TabIndex = 7;
             this.cbx_shippingLines.SelectedIndexChanged += new System.EventHandler(this.cbx_shippingLines_SelectedIndexChanged);
             // 
@@ -373,25 +376,20 @@ namespace Aurora_GM_Tools
             // tab_Colonies
             // 
             this.tab_Colonies.BackColor = System.Drawing.Color.MediumBlue;
-            this.tab_Colonies.Controls.Add(this.label10);
-            this.tab_Colonies.Controls.Add(this.cbx_newArmyOwner);
-            this.tab_Colonies.Controls.Add(this.btn_transferArmyOwner);
-            this.tab_Colonies.Controls.Add(this.label11);
-            this.tab_Colonies.Controls.Add(this.cbx_Army);
             this.tab_Colonies.Controls.Add(this.cbx_colonies);
             this.tab_Colonies.Controls.Add(this.label1);
             this.tab_Colonies.ForeColor = System.Drawing.Color.Lime;
             this.tab_Colonies.Location = new System.Drawing.Point(4, 38);
             this.tab_Colonies.Name = "tab_Colonies";
             this.tab_Colonies.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_Colonies.Size = new System.Drawing.Size(372, 483);
+            this.tab_Colonies.Size = new System.Drawing.Size(508, 483);
             this.tab_Colonies.TabIndex = 1;
             this.tab_Colonies.Text = "Colonies";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(34, 331);
+            this.label10.Location = new System.Drawing.Point(34, 88);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(175, 29);
             this.label10.TabIndex = 22;
@@ -401,16 +399,16 @@ namespace Aurora_GM_Tools
             // 
             this.cbx_newArmyOwner.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_newArmyOwner.FormattingEnabled = true;
-            this.cbx_newArmyOwner.Location = new System.Drawing.Point(11, 364);
+            this.cbx_newArmyOwner.Location = new System.Drawing.Point(11, 121);
             this.cbx_newArmyOwner.Name = "cbx_newArmyOwner";
-            this.cbx_newArmyOwner.Size = new System.Drawing.Size(339, 37);
+            this.cbx_newArmyOwner.Size = new System.Drawing.Size(481, 37);
             this.cbx_newArmyOwner.TabIndex = 21;
             // 
             // btn_transferArmyOwner
             // 
             this.btn_transferArmyOwner.BackColor = System.Drawing.Color.DarkBlue;
             this.btn_transferArmyOwner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btn_transferArmyOwner.Location = new System.Drawing.Point(11, 414);
+            this.btn_transferArmyOwner.Location = new System.Drawing.Point(81, 164);
             this.btn_transferArmyOwner.Name = "btn_transferArmyOwner";
             this.btn_transferArmyOwner.Size = new System.Drawing.Size(339, 42);
             this.btn_transferArmyOwner.TabIndex = 20;
@@ -421,7 +419,7 @@ namespace Aurora_GM_Tools
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 250);
+            this.label11.Location = new System.Drawing.Point(6, 7);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(147, 29);
             this.label11.TabIndex = 19;
@@ -430,9 +428,9 @@ namespace Aurora_GM_Tools
             // cbx_Army
             // 
             this.cbx_Army.FormattingEnabled = true;
-            this.cbx_Army.Location = new System.Drawing.Point(9, 282);
+            this.cbx_Army.Location = new System.Drawing.Point(9, 39);
             this.cbx_Army.Name = "cbx_Army";
-            this.cbx_Army.Size = new System.Drawing.Size(341, 37);
+            this.cbx_Army.Size = new System.Drawing.Size(483, 37);
             this.cbx_Army.TabIndex = 18;
             // 
             // cbx_colonies
@@ -442,7 +440,7 @@ namespace Aurora_GM_Tools
             this.cbx_colonies.FormattingEnabled = true;
             this.cbx_colonies.Location = new System.Drawing.Point(6, 34);
             this.cbx_colonies.Name = "cbx_colonies";
-            this.cbx_colonies.Size = new System.Drawing.Size(344, 37);
+            this.cbx_colonies.Size = new System.Drawing.Size(486, 37);
             this.cbx_colonies.TabIndex = 7;
             this.cbx_colonies.SelectedIndexChanged += new System.EventHandler(this.cbx_colonies_SelectedIndexChanged);
             // 
@@ -464,7 +462,7 @@ namespace Aurora_GM_Tools
             this.cbx_faction.FormattingEnabled = true;
             this.cbx_faction.Location = new System.Drawing.Point(106, 55);
             this.cbx_faction.Name = "cbx_faction";
-            this.cbx_faction.Size = new System.Drawing.Size(256, 37);
+            this.cbx_faction.Size = new System.Drawing.Size(398, 37);
             this.cbx_faction.TabIndex = 3;
             this.cbx_faction.SelectedIndexChanged += new System.EventHandler(this.cbx_faction_SelectedIndexChanged);
             // 
@@ -567,7 +565,7 @@ namespace Aurora_GM_Tools
             this.MilShipPanel.Enabled = false;
             this.MilShipPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.MilShipPanel.ForeColor = System.Drawing.Color.Lime;
-            this.MilShipPanel.Location = new System.Drawing.Point(445, 55);
+            this.MilShipPanel.Location = new System.Drawing.Point(566, 54);
             this.MilShipPanel.Name = "MilShipPanel";
             this.MilShipPanel.Size = new System.Drawing.Size(794, 985);
             this.MilShipPanel.TabIndex = 4;
@@ -663,12 +661,27 @@ namespace Aurora_GM_Tools
             this.lbl_MilShips.TabIndex = 6;
             this.lbl_MilShips.Text = "Military Ships:";
             // 
+            // tab_groundForces
+            // 
+            this.tab_groundForces.BackColor = System.Drawing.Color.MediumBlue;
+            this.tab_groundForces.Controls.Add(this.label10);
+            this.tab_groundForces.Controls.Add(this.label11);
+            this.tab_groundForces.Controls.Add(this.cbx_Army);
+            this.tab_groundForces.Controls.Add(this.cbx_newArmyOwner);
+            this.tab_groundForces.Controls.Add(this.btn_transferArmyOwner);
+            this.tab_groundForces.Location = new System.Drawing.Point(4, 38);
+            this.tab_groundForces.Name = "tab_groundForces";
+            this.tab_groundForces.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_groundForces.Size = new System.Drawing.Size(508, 483);
+            this.tab_groundForces.TabIndex = 3;
+            this.tab_groundForces.Text = "Grnd. Forces";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MediumBlue;
-            this.ClientSize = new System.Drawing.Size(1236, 1051);
+            this.ClientSize = new System.Drawing.Size(1356, 1051);
             this.Controls.Add(this.MilShipPanel);
             this.Controls.Add(this.GameControlsPanel);
             this.Controls.Add(this.menuStrip1);
@@ -688,6 +701,8 @@ namespace Aurora_GM_Tools
             this.tab_Colonies.PerformLayout();
             this.MilShipPanel.ResumeLayout(false);
             this.MilShipPanel.PerformLayout();
+            this.tab_groundForces.ResumeLayout(false);
+            this.tab_groundForces.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -748,6 +763,7 @@ namespace Aurora_GM_Tools
         private System.Windows.Forms.Button btn_transferArmyOwner;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cbx_Army;
+        private System.Windows.Forms.TabPage tab_groundForces;
     }
 }
 
