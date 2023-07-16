@@ -56,6 +56,11 @@ namespace Aurora_GM_Tools
             this.cbx_shippingLines = new System.Windows.Forms.ComboBox();
             this.lbl_shippingFleets = new System.Windows.Forms.Label();
             this.tab_Colonies = new System.Windows.Forms.TabPage();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cbx_newArmyOwner = new System.Windows.Forms.ComboBox();
+            this.btn_transferArmyOwner = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cbx_Army = new System.Windows.Forms.ComboBox();
             this.cbx_colonies = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cbx_faction = new System.Windows.Forms.ComboBox();
@@ -77,11 +82,6 @@ namespace Aurora_GM_Tools
             this.tbx_CrewAjustment = new System.Windows.Forms.TextBox();
             this.btn_applyAll = new System.Windows.Forms.Button();
             this.lbl_MilShips = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.cbx_newArmyOwner = new System.Windows.Forms.ComboBox();
-            this.btn_transferArmyOwner = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.cbx_Army = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.GameControlsPanel.SuspendLayout();
             this.tbctl_SelectionOptions.SuspendLayout();
@@ -93,6 +93,7 @@ namespace Aurora_GM_Tools
             // 
             // menuStrip1
             // 
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
@@ -333,7 +334,7 @@ namespace Aurora_GM_Tools
             this.cbx_shippingFleets.FormattingEnabled = true;
             this.cbx_shippingFleets.Location = new System.Drawing.Point(8, 118);
             this.cbx_shippingFleets.Name = "cbx_shippingFleets";
-            this.cbx_shippingFleets.Size = new System.Drawing.Size(487, 37);
+            this.cbx_shippingFleets.Size = new System.Drawing.Size(342, 37);
             this.cbx_shippingFleets.TabIndex = 10;
             // 
             // lbl_shippingLines
@@ -354,7 +355,7 @@ namespace Aurora_GM_Tools
             this.cbx_shippingLines.FormattingEnabled = true;
             this.cbx_shippingLines.Location = new System.Drawing.Point(8, 35);
             this.cbx_shippingLines.Name = "cbx_shippingLines";
-            this.cbx_shippingLines.Size = new System.Drawing.Size(487, 37);
+            this.cbx_shippingLines.Size = new System.Drawing.Size(342, 37);
             this.cbx_shippingLines.TabIndex = 7;
             this.cbx_shippingLines.SelectedIndexChanged += new System.EventHandler(this.cbx_shippingLines_SelectedIndexChanged);
             // 
@@ -386,6 +387,53 @@ namespace Aurora_GM_Tools
             this.tab_Colonies.Size = new System.Drawing.Size(372, 483);
             this.tab_Colonies.TabIndex = 1;
             this.tab_Colonies.Text = "Colonies";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(34, 331);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(175, 29);
+            this.label10.TabIndex = 22;
+            this.label10.Text = "Target Faction:";
+            // 
+            // cbx_newArmyOwner
+            // 
+            this.cbx_newArmyOwner.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_newArmyOwner.FormattingEnabled = true;
+            this.cbx_newArmyOwner.Location = new System.Drawing.Point(11, 364);
+            this.cbx_newArmyOwner.Name = "cbx_newArmyOwner";
+            this.cbx_newArmyOwner.Size = new System.Drawing.Size(339, 37);
+            this.cbx_newArmyOwner.TabIndex = 21;
+            // 
+            // btn_transferArmyOwner
+            // 
+            this.btn_transferArmyOwner.BackColor = System.Drawing.Color.DarkBlue;
+            this.btn_transferArmyOwner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn_transferArmyOwner.Location = new System.Drawing.Point(11, 414);
+            this.btn_transferArmyOwner.Name = "btn_transferArmyOwner";
+            this.btn_transferArmyOwner.Size = new System.Drawing.Size(339, 42);
+            this.btn_transferArmyOwner.TabIndex = 20;
+            this.btn_transferArmyOwner.Text = "Transfer Ownership of Army";
+            this.btn_transferArmyOwner.UseVisualStyleBackColor = false;
+            this.btn_transferArmyOwner.Click += new System.EventHandler(this.btn_transferArmyOwner_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 250);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(147, 29);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "Ground Unit:";
+            // 
+            // cbx_Army
+            // 
+            this.cbx_Army.FormattingEnabled = true;
+            this.cbx_Army.Location = new System.Drawing.Point(9, 282);
+            this.cbx_Army.Name = "cbx_Army";
+            this.cbx_Army.Size = new System.Drawing.Size(341, 37);
+            this.cbx_Army.TabIndex = 18;
             // 
             // cbx_colonies
             // 
@@ -614,53 +662,6 @@ namespace Aurora_GM_Tools
             this.lbl_MilShips.Size = new System.Drawing.Size(162, 29);
             this.lbl_MilShips.TabIndex = 6;
             this.lbl_MilShips.Text = "Military Ships:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(34, 331);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(175, 29);
-            this.label10.TabIndex = 22;
-            this.label10.Text = "Target Faction:";
-            // 
-            // cbx_newArmyOwner
-            // 
-            this.cbx_newArmyOwner.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_newArmyOwner.FormattingEnabled = true;
-            this.cbx_newArmyOwner.Location = new System.Drawing.Point(11, 364);
-            this.cbx_newArmyOwner.Name = "cbx_newArmyOwner";
-            this.cbx_newArmyOwner.Size = new System.Drawing.Size(339, 37);
-            this.cbx_newArmyOwner.TabIndex = 21;
-            // 
-            // btn_transferArmyOwner
-            // 
-            this.btn_transferArmyOwner.BackColor = System.Drawing.Color.DarkBlue;
-            this.btn_transferArmyOwner.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btn_transferArmyOwner.Location = new System.Drawing.Point(11, 414);
-            this.btn_transferArmyOwner.Name = "btn_transferArmyOwner";
-            this.btn_transferArmyOwner.Size = new System.Drawing.Size(339, 42);
-            this.btn_transferArmyOwner.TabIndex = 20;
-            this.btn_transferArmyOwner.Text = "Transfer Ownership of Army";
-            this.btn_transferArmyOwner.UseVisualStyleBackColor = false;
-            this.btn_transferArmyOwner.Click += new System.EventHandler(this.btn_transferArmyOwner_Click);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 250);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(147, 29);
-            this.label11.TabIndex = 19;
-            this.label11.Text = "Ground Unit:";
-            // 
-            // cbx_Army
-            // 
-            this.cbx_Army.FormattingEnabled = true;
-            this.cbx_Army.Location = new System.Drawing.Point(9, 282);
-            this.cbx_Army.Name = "cbx_Army";
-            this.cbx_Army.Size = new System.Drawing.Size(341, 37);
-            this.cbx_Army.TabIndex = 18;
             // 
             // Form1
             // 

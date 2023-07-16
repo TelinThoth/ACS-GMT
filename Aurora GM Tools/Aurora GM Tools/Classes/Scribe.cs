@@ -183,7 +183,7 @@ namespace Aurora_GM_Tools.Classes
                                 while (results.Read())
                                 {
                                     double[] temp = { results.GetDouble(2), results.GetDouble(3) };
-                                    group.fleetList.Add(new Fleet(results.GetString(0), results.GetInt32(1), temp, results.GetInt32(4)));
+                                    line.shippingFleet.Add(new Fleet(results.GetString(0), results.GetInt32(1), temp, results.GetInt32(4)));
                                 }
                             }
                         }
