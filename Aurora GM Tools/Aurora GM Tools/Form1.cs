@@ -41,10 +41,12 @@ namespace Aurora_GM_Tools
                 if (cbx_faction.SelectedItem.ToString() == venusText && !venusFlag)
                 {
                     RecursiveChange(this, 1);
+                    venusFlag = true;
                 }
                 else if (cbx_faction.SelectedItem.ToString() != venusText && venusFlag)
                 {
                     RecursiveChange(this, 0);
+                    venusFlag = false;
                 }
             }
         }

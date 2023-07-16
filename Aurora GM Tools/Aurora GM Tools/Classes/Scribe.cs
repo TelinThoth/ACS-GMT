@@ -273,10 +273,10 @@ namespace Aurora_GM_Tools.Classes
                             {
                                 while (results.Read())
                                 {
-                                    col.componentStock.Add(new Component(results.GetString(0), results.GetInt32(1), results.GetInt32(2)));
+                                    col.componentStock.Add(new Component(results.GetString(0), results.GetInt32(1), results.GetDouble(2)));
                                 }
                             }
-
+                        
                             getColony.CommandText = "SELECT FCT_Missiles.Name, FCT_PopulationWeapon.MissileID, FCT_PopulationWeapon.Amount FROM FCT_PopulationWeapon JOIN FCT_Missiles ON FCT_PopulationWeapon.MissileID = FCT_Missiles.MissileID WHERE FCT_PopulationWeapon.GameID = " + entry.Game_ID.ToString() + " AND FCT_PopulationWeapon.PopulationID = " + col.Col_ID.ToString() + ";";
                             using (SQLiteDataReader results = getColony.ExecuteReader())
                             {

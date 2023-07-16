@@ -10,7 +10,7 @@ namespace Aurora_GM_Tools.Classes
     {
         private string compName;
         private int compID;
-        public int compCount { get; set; }
+        public double compCount { get; set; }
 
         public string Comp_Name { get { return compName; } }
         public int Comp_ID { get { return compID; } }
@@ -22,7 +22,7 @@ namespace Aurora_GM_Tools.Classes
             compCount = 0;
         }
 
-        public Component(string i_name, int i_id, int i_count)
+        public Component(string i_name, int i_id, double i_count)
         {
             compName = i_name;
             compID = i_id;
