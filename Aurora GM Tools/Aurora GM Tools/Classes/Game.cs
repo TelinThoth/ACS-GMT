@@ -31,5 +31,10 @@ namespace Aurora_GM_Tools.Classes
             factionsList = new List<Faction>();
             waypoints = new List<Waypoint>();
         }
+
+        public string LogGame()
+        {
+            return gameName + ", " + gameID;
+        }
     }
 }

@@ -16,12 +16,13 @@ namespace Aurora_GM_Tools.Classes
         private string fileName = "AuroraDB.db";
 
         private List<Game> gamesList;
-
+        private Logger ghost;
         private SQLiteConnection uplink = new SQLiteConnection();
         private SQLiteConnectionStringBuilder dialup = new SQLiteConnectionStringBuilder();
         public Scribe()
         {
             gamesList = new List<Game>();
+            ghost = new Logger();
         }
 
         ~Scribe()
@@ -111,21 +112,37 @@ namespace Aurora_GM_Tools.Classes
             uplink.Open();
             using (SQLiteCommand getGames = new SQLiteCommand(uplink))
             {
+                ghost.LogLine("Loading Games List...");
+                
                 getGames.CommandText = "SELECT GameName, GameID FROM FCT_Game";
+
+                ghost.LogQuerry("Games List: ");
+                ghost.LogQuerry(getGames.CommandText);
+
                 using (SQLiteDataReader results = getGames.ExecuteReader())
                 {
                     while (results.Read())
                     {
                         gamesList.Add(new Game(results.GetString(0), results.GetInt32(1)));
                     }
+
+                    foreach (Game entry in gamesList)
+                    {
+                        ghost.LogQuerry(entry.LogGame());
+                    }
+
                 }
             }
             uplink.Close();
+            ghost.LogLine("Games Loaded: " + gamesList.Count.ToString());
+            ghost.AddBreaks();
             return;
         }
 
         private void PopulateInternalFactions()
         {
+
+            ghost.LogLine("Loading Factions Lists...");
             uplink.Open();
 
             using (SQLiteCommand getFacts = new SQLiteCommand(uplink))
@@ -133,13 +150,21 @@ namespace Aurora_GM_Tools.Classes
                 foreach (Game entry in gamesList)
                 {
                     getFacts.CommandText = "SELECT FCT_Race.RaceTitle, FCT_Race.RaceID, FCT_NavalAdminCommand.NavalAdminCommandID, FCT_Race.WealthPoints, FCT_Race.NPR FROM FCT_Race JOIN FCT_NavalAdminCommand ON FCT_NavalAdminCommand.RaceID = FCT_Race.RaceID WHERE FCT_Race.GameID = " + entry.Game_ID.ToString();
+                    ghost.LogQuerry("Game: " + entry.Game_Name);
+                    ghost.LogQuerry("Factions List: ");
+                    ghost.LogQuerry(getFacts.CommandText);
+
                     using (SQLiteDataReader results = getFacts.ExecuteReader())
                     {
                         while (results.Read())
                         {
                             entry.factionsList.Add(new Faction(results.GetString(0), results.GetInt32(1), results.GetInt32(2), results.GetDouble(3), !results.GetBoolean(4)));
+                            ghost.LogQuerry(results.GetString(0) + ", " + results.GetInt32(1) + ", " + results.GetInt32(2) + ", " + results.GetDouble(3) + ", " + (!results.GetBoolean(4)).ToString());
                         }
                     }
+
+                    ghost.LogLine("Factions Loaded: " + entry.factionsList.Count.ToString());
+                    ghost.AddBreaks();
                 }
             }
             uplink.Close();

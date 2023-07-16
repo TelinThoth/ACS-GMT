@@ -1,0 +1,62 @@
+Games List: 
+SELECT GameName, GameID FROM FCT_Game
+Example Game, 90
+Human Coalition, 91
+R&D Lab, 92
+Multifaction Tester, 93
+
+-----  -----  -----
+
+Game: Example Game
+Factions List: 
+SELECT FCT_Race.RaceTitle, FCT_Race.RaceID, FCT_NavalAdminCommand.NavalAdminCommandID, FCT_Race.WealthPoints, FCT_Race.NPR FROM FCT_Race JOIN FCT_NavalAdminCommand ON FCT_NavalAdminCommand.RaceID = FCT_Race.RaceID WHERE FCT_Race.GameID = 90
+Terran Federation, 401, 590, 15820, True
+Llandudno Commonality, 402, 591, 10542, False
+Eldar, 403, 592, 0, False
+Precusors, 404, 593, 0, False
+Invaders, 405, 594, 0, False
+
+-----  -----  -----
+
+Game: Human Coalition
+Factions List: 
+SELECT FCT_Race.RaceTitle, FCT_Race.RaceID, FCT_NavalAdminCommand.NavalAdminCommandID, FCT_Race.WealthPoints, FCT_Race.NPR FROM FCT_Race JOIN FCT_NavalAdminCommand ON FCT_NavalAdminCommand.RaceID = FCT_Race.RaceID WHERE FCT_Race.GameID = 91
+Earth Coalition, 406, 595, 22183.6830600481, True
+Pelindaba Empire, 407, 596, 9311.68498630137, False
+Eldar, 408, 597, 0, False
+Precusors, 409, 598, 0, False
+Invaders, 410, 599, 0, False
+
+-----  -----  -----
+
+Game: R&D Lab
+Factions List: 
+SELECT FCT_Race.RaceTitle, FCT_Race.RaceID, FCT_NavalAdminCommand.NavalAdminCommandID, FCT_Race.WealthPoints, FCT_Race.NPR FROM FCT_Race JOIN FCT_NavalAdminCommand ON FCT_NavalAdminCommand.RaceID = FCT_Race.RaceID WHERE FCT_Race.GameID = 92
+Player Race, 411, 600, 16020, True
+Bornholm Protectorate, 412, 601, 27319, False
+Eldar, 413, 602, 0, False
+Precusors, 414, 603, 0, False
+Invaders, 415, 604, 0, False
+
+-----  -----  -----
+
+Game: Multifaction Tester
+Factions List: 
+SELECT FCT_Race.RaceTitle, FCT_Race.RaceID, FCT_NavalAdminCommand.NavalAdminCommandID, FCT_Race.WealthPoints, FCT_Race.NPR FROM FCT_Race JOIN FCT_NavalAdminCommand ON FCT_NavalAdminCommand.RaceID = FCT_Race.RaceID WHERE FCT_Race.GameID = 93
+Player Race, 416, 605, 16150, True
+PR2, 417, 606, 15780, True
+PR3, 418, 607, 16085, True
+PR4, 419, 608, 15810, True
+pr5, 420, 609, 16280, True
+PR6, 421, 610, 16075, True
+PR7, 422, 611, 15535, True
+PR8, 423, 612, 15680, True
+PR9, 424, 613, 16180, True
+PR0, 425, 614, 15815, True
+Cadmium Cartel, 426, 615, 17925, False
+Eldar, 427, 616, 0, False
+Precusors, 428, 617, 0, False
+Invaders, 429, 618, 0, False
+
+-----  -----  -----
+

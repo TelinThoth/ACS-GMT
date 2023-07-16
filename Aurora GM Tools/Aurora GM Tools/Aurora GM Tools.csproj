@@ -91,6 +91,7 @@
     <Compile Include="Classes\Faction.cs" />
     <Compile Include="Classes\Fleet.cs" />
     <Compile Include="Classes\Game.cs" />
+    <Compile Include="Classes\Logger.cs" />
     <Compile Include="Classes\Missile.cs" />
     <Compile Include="Classes\Scribe.cs" />
     <Compile Include="Classes\Ship.cs" />
