@@ -16,7 +16,7 @@ namespace Aurora_GM_Tools
         private Scribe librarian;
         private string gameLocation;
 
-        private Point activeAnchor = new Point(298, 36);
+        private Point activeAnchor = new Point(378, 36);
         private Point storageAnchor = new Point(1000, 1000);
 
         private bool venusFlag = false;
